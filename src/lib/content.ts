@@ -1,5 +1,6 @@
 import { getEntry, getCollection, type CollectionEntry } from 'astro:content';
 import { marked } from 'marked';
+import { withBase } from './url';
 
 function required<T>(entry: { data: T } | undefined, name: string): T {
   if (!entry) throw new Error(`Missing data file for "${name}" in content/data/`);
@@ -65,8 +66,8 @@ export function fill(text: string, data: SiteData): string {
 }
 
 /** Render Markdown (with tokens) to HTML. */
-export const md = (s: string | undefined, data: SiteData) => marked.parse(fill(s ?? '', data), { async: false }) as string;
-export const mdInline = (s: string | undefined, data: SiteData) => marked.parseInline(fill(s ?? '', data), { async: false }) as string;
+export const md = (s: string | undefined, data: SiteData) => withBase(marked.parse(fill(s ?? '', data), { async: false }) as string);
+export const mdInline = (s: string | undefined, data: SiteData) => withBase(marked.parseInline(fill(s ?? '', data), { async: false }) as string);
 
 /** True when a link has been filled in, so empty links aren't shown. */
 export const isSet = (href?: string) => !!href && href.trim() !== '';

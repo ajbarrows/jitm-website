@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
@@ -20,7 +21,7 @@ const quotes = await getTestimonials({ spot: 'faculty' });
       <ul class="faculty-grid">
         {faculty.map((f) => (
           <li>
-            <a href={`/faculty/${f.id}/`} class="faculty-card">
+            <a href={url(`/faculty/${f.id}/`)} class="faculty-card">
               <div class="faculty-photo">
                 {f.data.headshot
                   ? <Image src={f.data.headshot} alt={f.data.headshotAlt} widths={[400, 800]} sizes="(min-width: 900px) 33vw, (min-width: 560px) 50vw, 100vw" />

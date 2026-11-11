@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SectionTitle from '../components/SectionTitle.astro';
@@ -22,7 +23,7 @@ const gridQuotes = moreQuotes.slice(0, 3);
         <h1 set:html={mdInline(d.hero.headline, data)} />
         <p class="hero-meta">{camp.dates}</p>
         <div class="btn-row center">
-          <a href="/apply/" class="btn btn-large">Apply for {camp.year}</a>
+          <a href={url('/apply/')} class="btn btn-large">Apply for {camp.year}</a>
           <a href={links.social.youtube} class="btn btn-large btn-light">Watch past years</a>
         </div>
       </div>
@@ -85,8 +86,8 @@ const gridQuotes = moreQuotes.slice(0, 3);
       <SectionTitle label={d.whoHeading ?? 'Who should apply'} />
       <p class="statement" set:html={mdInline(d.who, data)} />
       <div class="btn-row center">
-        <a href="/apply/" class="btn btn-dark">How to apply</a>
-        <a href="/scholarships/" class="btn btn-outline">Scholarships</a>
+        <a href={url('/apply/')} class="btn btn-dark">How to apply</a>
+        <a href={url('/scholarships/')} class="btn btn-outline">Scholarships</a>
       </div>
     </div>
   </section>

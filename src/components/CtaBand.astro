@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import { Image } from 'astro:assets';
 import photo from '../../content/images/photos/dsc01701.jpg';
 import { getData } from '../lib/content';
@@ -14,6 +15,6 @@ const first = deadlines[0];
       <h2>Ready to play?</h2>
       {first && <p>Applications for {camp.year} are due {first.date}.</p>}
     </div>
-    <a href="/apply/" class="btn btn-large">Apply now</a>
+    <a href={url('/apply/')} class="btn btn-large">Apply now</a>
   </div>
 </section>

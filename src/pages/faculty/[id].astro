@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
@@ -39,7 +40,7 @@ const description = `${f.name}, ${f.role} at Jazz in the Mountains${f.instrument
               {f.tracks.map((t) => (
                 <li>
                   <p class="track-title">{t.title}</p>
-                  <audio controls preload="none" src={t.file}></audio>
+                  <audio controls preload="none" src={url(t.file)}></audio>
                 </li>
               ))}
             </ul>
@@ -50,7 +51,7 @@ const description = `${f.name}, ${f.role} at Jazz in the Mountains${f.instrument
             {f.links.map((l) => <li><a href={l.href}>{l.label} ↗</a></li>)}
           </ul>
         )}
-        <p class="back-wrap"><a href="/faculty/" class="text-link">← All faculty</a></p>
+        <p class="back-wrap"><a href={url('/faculty/')} class="text-link">← All faculty</a></p>
       </div>
     </div>
   </article>
