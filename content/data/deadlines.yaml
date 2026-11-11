@@ -1,0 +1,26 @@
+# Key dates, in order. Shown on the Apply page; the first one also appears on
+# the home page and in the "Ready to play?" banner.
+# `id` lets the Apply steps refer to a date (e.g. `deadline: application`).
+# TODO: these are the 2026 dates. Confirm for 2027.
+
+- id: application
+  date: March 1
+  item: Online applications due
+- id: audition
+  date: March 16
+  item: Video auditions due
+- id: placement
+  date: April 1
+  item: Acceptance, band placement and program outline sent
+- id: commitment
+  date: April 20
+  item: Commitment to attend and room-type request due
+- id: payment
+  date: May 1
+  item: Full camp fee due; reservations finalized
+- id: music
+  date: July 1
+  item: Ensemble music sent
+- id: gear
+  date: July 10
+  item: Gear rentals arranged and paid

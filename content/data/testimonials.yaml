@@ -1,0 +1,65 @@
+# Short testimonials, shown as pull quotes around the site. Quotes are verbatim.
+#
+# quote:    one or two sentences (240 characters max)
+# name:     full name; the site shows first name and last initial ("Mark M.")
+# role:     optional, for non-campers; shown under the name, e.g. "Guest Artist"
+# spots:    where it appears. Any of:
+#             home          home page: the first is a large feature quote after
+#                           "What we value"; the next three appear in
+#                           "In their words" near the bottom
+#             apply         Apply page, after the four steps (up to two)
+#             faculty       Faculty page, under the grid (up to two)
+#             scholarships  Scholarships page, after "Our commitment" (up to two)
+#             credit        Earn College Credit page (up to two)
+#           Order in this file decides which come first.
+# faculty:  optional faculty id (from faculty.yaml); also shows the quote on
+#           that person's profile page
+# draft:    true = only visible in `npm run dev`, never on the live site
+
+# --- Home ---------------------------------------------------------------
+
+- quote: "It is always one of the best weeks of my year, spending a week making music with a fun and wonderful group of people!"
+  name: Wendy Kain
+  spots: [home]
+
+- quote: "I love that year after year I get to hang and catch up with the musical friendships made over the years. I love that I am able to make new friends who share the same passion."
+  name: Sherry Ferraiolo
+  spots: [home]
+
+- quote: "My abilities on my instrument always improve significantly with the immersion into it the camp provides and it bleeds into the other genres I regularly play in."
+  name: Mark Madden
+  spots: [home]
+
+- quote: "I think the camaraderie and musical experiences this camp provides and nurtures is just amazing … It's truly a special and important program."
+  name: Daniel Ian Smith
+  role: Guest Artist
+  spots: [home, scholarships]
+
+# --- Apply: for applicants who aren't sure they're ready ----------------
+
+- quote: "I had grave doubts about my ability to be a contributing member of my ensemble before camp started, but I am so glad I stuck with it! Thanks for a great week and for giving me confidence!"
+  name: Hilary Kissel
+  spots: [apply]
+
+- quote: "This was my first time at JITM, and I needed much encouragement to attend, but was one of the best experiences of my life."
+  name: Andy Tompkins
+  spots: [apply]
+
+# --- Faculty ------------------------------------------------------------
+
+- quote: "This is a very special group of educators. Knowledgeable, skillful teachers, funny and caring. I feel lucky to have spent time with this group."
+  name: Richard Miller
+  spots: [faculty]
+
+# TODO: last name needed. Probably Andy Tompkins (above); if so,
+# change the name and set draft to false. (Either way it would display as "Andy T.")
+- quote: "Every staff member I met was wonderful. Knowledgeable, patient, supportive, non-judgmental. They could've easily been brutal, given the quality of musician most of them work with regularly."
+  name: Andy Tompkins.
+  spots: [faculty]
+  draft: true
+
+# --- Earn College Credit: for music educators ---------------------------
+
+- quote: "I always feel so invigorated with respect to my own playing and my own teaching when I start back to school a few weeks after."
+  name: Matt Pisarcik
+  spots: [credit]

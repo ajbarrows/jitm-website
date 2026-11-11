@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import Monogram from '../../components/Monogram.astro';
+import Testimonial from '../../components/Testimonial.astro';
+import { getData, getFaculty, getPage, getTestimonials, md } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const faculty = await getFaculty();
+  return faculty.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const f = entry.data;
+const data = await getData();
+const { data: facultyPage } = await getPage('faculty');
+const quotes = await getTestimonials({ faculty: entry.id });
+const hasBio = f.bio.trim().length > 0;
+const description = `${f.name}, ${f.role} at Jazz in the Mountains${f.instrument ? ` (${f.instrument.toLowerCase()})` : ''}.`;
+---
+<Base title={f.name} description={description}>
+  <PageHeader eyebrow={f.role} title={f.name} lede={f.instrument || undefined} image={facultyPage.banner} />
+  <article class="section">
+    <div class="container profile">
+      <div class="profile-photo">
+        {f.headshot
+          ? <Image src={f.headshot} alt={f.headshotAlt} widths={[600, 1200]} sizes="(min-width: 900px) 45vw, 100vw" loading="eager" />
+          : <Monogram name={f.name} />}
+      </div>
+      <div class="profile-body">
+        <SectionTitle label="Biography" align="left" />
+        {hasBio ? <div class="prose prose-large" set:html={md(f.bio, data)} /> : <p class="muted">Biography coming soon.</p>}
+        {quotes.map((t) => <Testimonial t={t} />)}
+        {f.tracks.length > 0 && (
+          <section class="tracks">
+            <SectionTitle label="Listen" level="h3" align="left" />
+            <ul class="plain">
+              {f.tracks.map((t) => (
+                <li>
+                  <p class="track-title">{t.title}</p>
+                  <audio controls preload="none" src={t.file}></audio>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {f.links.length > 0 && (
+          <ul class="link-list">
+            {f.links.map((l) => <li><a href={l.href}>{l.label} ↗</a></li>)}
+          </ul>
+        )}
+        <p class="back-wrap"><a href="/faculty/" class="text-link">← All faculty</a></p>
+      </div>
+    </div>
+  </article>
+</Base>

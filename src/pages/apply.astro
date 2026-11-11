@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import TestimonialGroup from '../components/TestimonialGroup.astro';
+import { getData, getPage, getTestimonials, fill, md, isSet, telHref } from '../lib/content';
+
+const data = await getData();
+const { camp, fees, links, deadlines, deadline } = data;
+const { data: d } = await getPage('apply');
+const quotes = await getTestimonials({ spot: 'apply' });
+const formatPrice = (n: number) => `$${n.toLocaleString('en-US')}`;
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)}>
+  <PageHeader eyebrow={`${camp.dates} · ${camp.town}`} title={fill(d.title, data)} lede={d.intro && fill(d.intro, data)} image={d.banner} imageAlt={d.bannerAlt} />
+
+  <section class="section">
+    <div class="container">
+      <SectionTitle label="How to apply" title="Four steps to the bandstand" />
+      <ol class="process">
+        {d.steps?.map((step, i) => {
+          const href = step.button ? fill(step.button.href, data) : '';
+          const due = step.deadline ? deadline[step.deadline] : undefined;
+          if (step.deadline && !due) throw new Error(`Apply step "${step.title}" refers to unknown deadline "${step.deadline}"`);
+          return (
+            <li>
+              <span class="process-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              {due && <p class="due">Due {due}</p>}
+              <div class="prose" set:html={md(step.body, data)} />
+              {step.button && isSet(href) && <a href={href} class="text-link">{step.button.label} →</a>}
+            </li>
+          );
+        })}
+      </ol>
+      <TestimonialGroup quotes={quotes} />
+    </div>
+  </section>
+
+  <section class="section section-warm">
+    <div class="container split-even">
+      <div>
+        <SectionTitle label="Who can apply" align="left" />
+        <ul class="checklist">
+          {camp.eligibility.map((e) => <li>{e}</li>)}
+        </ul>
+      </div>
+      <div>
+        <SectionTitle label="Key dates" align="left" />
+        <dl class="dates">
+          {deadlines.map((x) => <div><dt>{x.date}</dt><dd>{x.item}</dd></div>)}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionTitle label="Camp fees" title="One price covers the week" />
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Camp fees by room type and occupancy</caption>
+          <thead>
+            <tr>
+              <th scope="col">Room type</th>
+              {fees.columns.map((c) => <th scope="col">{c.label}<span class="th-note">{c.note}</span></th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {fees.rooms.map((r) => (
+              <tr>
+                <th scope="row">{r.room}</th>
+                {r.prices.map((p, i) => <td data-label={`${fees.columns[i]?.label} (${fees.columns[i]?.note})`}>{formatPrice(p)}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="included">
+        <div><p class="label">Included</p><p>{fees.included}</p></div>
+        <div><p class="label">Not included</p><p>{fees.notIncluded}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-warm" id="audition">
+    <div class="container narrow">
+      <SectionTitle label="Video audition" title="Recording your audition" />
+      <p class="center">Download the sheet music and play-along tracks, then follow the instructions for your instrument.</p>
+      <div class="btn-row center">
+        {isSet(links.auditionMusic) && <a href={links.auditionMusic} class="btn btn-outline">Sheet music and recordings</a>}
+        {isSet(links.forms.videoUpload) && <a href={links.forms.videoUpload} class="btn btn-dark">Upload your video</a>}
+      </div>
+      <div class="accordion">
+        {d.audition?.map((a, i) => (
+          <details open={i === 0}>
+            <summary>{a.title}</summary>
+            <div class="prose">
+              <Fragment set:html={md(a.body, data)} />
+              {a.image && <Image src={a.image} alt={a.imageAlt ?? ''} class="inline-img" />}
+            </div>
+          </details>
+        ))}
+      </div>
+      <p class="center muted">Questions? Email <a href={`mailto:${camp.contact.email}`}>{camp.contact.email}</a> or call <a href={telHref(camp.contact.phone)}>{camp.contact.phone}</a>.</p>
+    </div>
+  </section>
+</Base>

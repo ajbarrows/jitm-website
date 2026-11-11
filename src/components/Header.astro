@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../content/images/logo.png';
+
+const nav = [
+  { href: '/faculty/', label: 'Faculty' },
+  { href: '/scholarships/', label: 'Scholarships' },
+  { href: '/contact/', label: 'Contact' },
+];
+const path = Astro.url.pathname;
+const current = (href: string) => path.startsWith(href);
+---
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="Jazz in the Mountains, home">
+      <Image src={logo} alt="" width={150} densities={[1, 2]} loading="eager" />
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href} aria-current={current(item.href) ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+        <li><a href="/apply/" class="btn btn-small" aria-current={current('/apply/') ? 'page' : undefined}>Apply</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

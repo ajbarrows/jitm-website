@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import TestimonialGroup from '../components/TestimonialGroup.astro';
+import { getData, getPage, getTestimonials, fill, md, mdInline, isSet } from '../lib/content';
+
+const data = await getData();
+const { camp, links } = data;
+const page = await getPage('scholarships');
+const d = page.data;
+const quotes = await getTestimonials({ spot: 'scholarships' });
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)}>
+  <PageHeader eyebrow="Scholarships" title={fill(d.headline ?? d.title, data)} image={d.banner} imageAlt={d.bannerAlt} />
+  <section class="section">
+    <div class="container narrow center">
+      <SectionTitle label="Our commitment" />
+      <div class="prose prose-large" set:html={md(page.body, data)} />
+      <TestimonialGroup quotes={quotes} />
+    </div>
+  </section>
+  <section class="section section-warm">
+    <div class="container columns-divided">
+      <div>
+        <SectionTitle label="Apply for a scholarship" />
+        <p set:html={mdInline(d.apply, data)} />
+        {isSet(links.forms.scholarship)
+          ? <a href={links.forms.scholarship} class="btn btn-dark">Scholarship application</a>
+          : <p class="muted">The scholarship application will be posted here soon. Until then, email <a href={`mailto:${camp.contact.email}`}>{camp.contact.email}</a>.</p>}
+      </div>
+      <div>
+        <SectionTitle label="Support the fund" />
+        <p set:html={mdInline(d.donate, data)} />
+        {isSet(links.donate)
+          ? <a href={links.donate} class="btn btn-dark">Donate</a>
+          : <p class="muted">Online giving is coming soon. To give now, email <a href={`mailto:${camp.contact.email}`}>{camp.contact.email}</a>.</p>}
+      </div>
+    </div>
+  </section>
+</Base>

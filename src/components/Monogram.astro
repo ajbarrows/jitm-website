@@ -1,0 +1,7 @@
+---
+// Placeholder shown until a faculty headshot is added.
+interface Props { name: string }
+const words = Astro.props.name.split(/\s+/);
+const initials = (words[0][0] + (words.length > 1 ? words[words.length - 1][0] : '')).toUpperCase();
+---
+<div class="monogram" aria-hidden="true"><span>{initials}</span></div>

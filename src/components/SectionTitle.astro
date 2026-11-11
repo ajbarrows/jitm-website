@@ -1,0 +1,12 @@
+---
+// Centered small-caps label with a short rule, optionally followed by a large heading.
+interface Props { label: string; title?: string; level?: 'h2' | 'h3'; light?: boolean; align?: 'center' | 'left' }
+const { label, title, level = 'h2', light = false, align = 'center' } = Astro.props;
+const Tag = level;
+---
+<div class:list={['section-title', `align-${align}`, { light }]}>
+  {title
+    ? <><p class="label">{label}</p><Tag class="display">{title}</Tag></>
+    : <Tag class="label">{label}</Tag>}
+  <span class="rule" aria-hidden="true"></span>
+</div>

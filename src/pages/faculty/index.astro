@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Monogram from '../../components/Monogram.astro';
+import TestimonialGroup from '../../components/TestimonialGroup.astro';
+import { getData, getPage, getFaculty, getTestimonials, fill, md } from '../../lib/content';
+
+const data = await getData();
+const page = await getPage('faculty');
+const faculty = await getFaculty();
+const quotes = await getTestimonials({ spot: 'faculty' });
+---
+<Base title={fill(page.data.title, data)} description={fill(page.data.description, data)}>
+  <PageHeader eyebrow="Faculty and staff" title="Learn from players who love to teach" image={page.data.banner} imageAlt={page.data.bannerAlt}>
+    <div class="banner-lede" set:html={md(page.body, data)} />
+  </PageHeader>
+  <section class="section">
+    <div class="container">
+      <ul class="faculty-grid">
+        {faculty.map((f) => (
+          <li>
+            <a href={`/faculty/${f.id}/`} class="faculty-card">
+              <div class="faculty-photo">
+                {f.data.headshot
+                  ? <Image src={f.data.headshot} alt={f.data.headshotAlt} widths={[400, 800]} sizes="(min-width: 900px) 33vw, (min-width: 560px) 50vw, 100vw" />
+                  : <Monogram name={f.data.name} />}
+              </div>
+              <p class="label">{f.data.role}</p>
+              <h2>{f.data.name}</h2>
+              {f.data.instrument && <p class="instrument">{f.data.instrument}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <TestimonialGroup quotes={quotes} />
+    </div>
+  </section>
+</Base>

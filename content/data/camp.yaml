@@ -1,0 +1,29 @@
+# Camp details used across the site. Update each year.
+# TODO: confirm 2027 dates (the old site showed both Aug 8–13 and Aug 9–14).
+
+year: 2027
+dates: August 8–13, 2027
+
+venue: Killington Grand Resort Hotel
+town: Killington, Vermont
+
+# Short audience line for the home page "Who" box.
+audience: Adult intermediate and advanced players
+
+# Bulleted eligibility rules on the Apply page.
+eligibility:
+  - Adults 18 and over
+  - Intermediate or advanced instrumentalists
+  - Clarinet and flute players must also play saxophone
+  - We don't accept vocalists at this time
+
+organization:
+  name: Jazz in the Mountains
+  legalName: BDI Enterprises, LLC
+
+contact:
+  email: admin@jazzinthemountains.com
+  phone: (802) 798-9998
+  mailingAddress:
+    - P.O. Box 383
+    - Montpelier, VT 05601

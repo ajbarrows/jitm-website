@@ -1,0 +1,15 @@
+---
+// Up to two quotes at the end of a section: one is shown as a centered pull
+// quote, two side by side.
+import Testimonial from './Testimonial.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { quotes: CollectionEntry<'testimonials'>['data'][] }
+const quotes = Astro.props.quotes.slice(0, 2);
+---
+{quotes.length === 1 && <Testimonial t={quotes[0]} />}
+{quotes.length === 2 && (
+  <div class="testimonial-pair">
+    {quotes.map((t) => <Testimonial t={t} variant="card" />)}
+  </div>
+)}

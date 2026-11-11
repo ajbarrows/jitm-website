@@ -1,0 +1,22 @@
+# Earn College Credit page details.
+
+provider: Vermont State University's Center for Schools
+course: Jazz Immersion
+
+contact:
+  name: Glendon Ingalls
+  email: glendoningalls@gmail.com # TODO: confirm, or use admin@jazzinthemountains.com
+
+# Registration links shown as buttons. Leave href as "" to hide one.
+# TODO: the old links were broken; get working 2027 links.
+links:
+  - label: Course registration
+    href: "" # was https://vtsucenterforschools.forms-db.com/view.php?id=170779
+  - label: Syllabus
+    href: ""
+  - label: Student info letter
+    href: ""
+  - label: Welcome letter
+    href: ""
+  - label: VTSU continuing education
+    href: ""

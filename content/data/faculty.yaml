@@ -1,0 +1,210 @@
+# Faculty and staff, in the order they appear on the Faculty page.
+# `id` becomes the page address: /faculty/<id>/
+# headshot: a square photo in content/images/faculty/, e.g. ../images/faculty/jane-doe.jpg
+#   (until then the card shows initials). Black and white matches the others.
+# tracks: MP3s in public/audio/, e.g. { title: Blue Bossa, file: /audio/jane-doe-blue-bossa.mp3 }
+# draft: true hides someone without deleting them.
+# bio: Markdown is allowed (**bold**, [links](https://…)).
+# TODO: confirm the 2027 roster, add MP3s, and have each person approve their bio.
+#       Still need headshots for Daniel Ian Smith and Peter BarenBregge.
+
+- id: daniel-ian-smith
+  name: Daniel Ian Smith
+  role: Guest Artist
+  instrument: Saxophone and flute
+  headshot: null
+  headshotAlt: Daniel Ian Smith
+  tracks: []
+  links:
+    - label: Website
+      href: https://danieliansmith.com/
+  # TODO: confirm he is the 2027 guest artist
+  bio: >-
+    Daniel Ian Smith is a saxophonist, flutist, composer and educator who has
+    taught at Berklee College of Music in Boston for nearly 30 years. In 1992 he
+    founded Big and Phat Jazz Productions. He leads the New World Jazz Composers
+    Octet and The Latin Side of Billy Strayhorn, and he has recorded on more
+    than 30 albums.
+  draft: true
+
+- id: ray-vega
+  name: Ray Vega
+  role: "" # TODO: role at camp (e.g. Guest Artist or Staff Musician), then set draft to false
+  instrument: Trumpet and percussion
+  headshot: ../images/faculty/ray-vega.jpg
+  headshotAlt: Ray Vega playing, in profile
+  tracks: []
+  links: []
+  draft: true
+  # Bio copied from staff/ray-vega/bio.txt (converted from HTML).
+  bio: |-
+    *"(Ray Vega's) creating a very, very valuable bridge from the classroom to
+    the bandstand... That's the magic that Ray brings. He transcends academia and
+    makes it real."* — [toddcoolman.com](https://toddcoolman.me/home)
+
+    A native of the South Bronx, Ray is a veteran of the bands of Tito Puente, Ray
+    Barretto, Mongo Santamaria, and Mario Bauza to name a few. Ray has performed
+    and/or recorded with Joe Henderson, Lionel Hampton, Mel Torme, Paquito
+    D'Rivera, Arturo Sandoval, The Spanish Harlem Orchestra, Poncho Sanchez, Steve
+    Turre, Israel Lopez "Cachao", The Chico O'Farrill Afro-Cuban Jazz Orchestra,
+    Jazz at Lincoln Center Afro Latin Jazz Orchestra, Paul Simon, Michel Camilo,
+    The Mingus Big Band, The Duke Ellington Orchestra, The Vanguard Jazz
+    Orchestra, Bebo Valdez, and Celia Cruz, among numerous others.
+
+    A multi-talented trumpeter, percussionist, composer, and arranger, he presents
+    Jazz from a refreshingly original and contemporary perspective. He has two
+    recordings on the Concord Picante label, his self-titled debut "Ray Vega", and
+    "Boperation", along with his 1st release on the Palmetto label "Pa'lante" &
+    have been well received by critics, audiences and musicians alike. Vega's 2nd
+    Palmetto CD "Squeeze, Squeeze" has also received critical acclaim including
+    Four Stars in Down Beat Magazine.
+
+    Vega grew up immersed in the heart of two vibrant New York City music scenes:
+    Jazz and Salsa. In addition to learning about these two musical styles with
+    some of the great legends, he attended The Long Island University Brooklyn
+    Center and is a graduate of the legendary High School of Music and Art. It was
+    during his time with Barretto that Vega was called upon to join the Tito
+    Puente Latin Jazz Orchestra as lead trumpeter. Vega recorded with Puente's
+    Orchestra many times over including the Grammy winning "Mambo Birdland",
+    "Dancemania '99" and "Obra Maestra".
+
+    Ray is currently Senior Lecturer, Jazz History and Trumpet at the University
+    of Vermont and maintains an active performing schedule.
+
+- id: peter-barenbregge
+  name: Peter BarenBregge
+  role: Band Director
+  instrument: Woodwinds
+  headshot: ../images/faculty/pete-barenbregge.jpg
+  headshotAlt: Peter BarenBregge
+  tracks: []
+  links:
+    - label: Listen to Peter
+      href: http://www.petebarenbregge.com/cds.html  # TODO: check link still works
+  bio: >-
+    Peter BarenBregge has spent more than 50 years in music. He started as a
+    middle school band director, then spent 20 years with the U.S. Air Force's
+    Airmen of Note, the last nine as its musical director. He later edited jazz
+    publications for Warner Bros. Publications and Alfred Music. He has lived in
+    Venice, Florida, since 2017.
+
+- id: rich-davidian
+  name: Rich Davidian
+  role: Camp Administrator and Big Band Director
+  instrument: Woodwinds
+  headshot: ../images/faculty/rich-davidian.jpg
+  headshotAlt: Rich Davidian with his saxophone
+  tracks: []
+  links: []
+  bio: >-
+    Rich Davidian grew up in Dearborn, Michigan, earned a music education degree
+    from Wayne State University, and moved to Vermont in 1972. He taught
+    instrumental music in the Montpelier Public Schools for 38 years before
+    retiring in 2010. A charter member of the Vermont Jazz Ensemble, he has been
+    its music director since 1976. He has also run Stolen Moments Audio, a
+    recording and sound reinforcement business, since 1998. He lives in East
+    Montpelier and is a partner in BDI Enterprises, which runs the camp.
+
+- id: charlie-sarling
+  name: Charlie Sarling
+  role: Big Band Director
+  instrument: Trumpet
+  headshot: ../images/faculty/charlie-sarling.jpg
+  headshotAlt: Charlie Sarling playing trumpet
+  tracks: []
+  links: []
+  bio: >-
+    Charlie Sarling taught music for 38 years in New York's Brentwood School
+    District, then taught trumpet as an adjunct at Suffolk County Community
+    College until 2018. From 2012 to 2019 he co-coordinated jazz for SCMEA, the
+    Suffolk County Music Educators' Association. He has also been a summer
+    clinician at adult jazz camps in Vermont and Rhode Island.
+
+- id: glendon-ingalls
+  name: Glendon Ingalls
+  role: Nonet Director
+  instrument: Trumpet, double bass, electric bass and sousaphone
+  headshot: ../images/faculty/glendon-ingalls.jpg
+  headshotAlt: Glendon Ingalls holding a trumpet outdoors
+  tracks: []
+  links: []
+  bio: >-
+    Glendon Ingalls grew up in Johnson, Vermont, and graduated in music from the
+    University of Vermont. A retired public school music educator, he is a two-
+    time past president of the Vermont Association for Jazz Education. He has
+    taught at the UVM Summer Session, Vermont Summer Jazz Camp and Jazz Vermont,
+    and he founded the Rutland Town School Jazz Camp. He teaches privately at
+    Castleton University, Middlebury College and the Middlebury Community Music
+    Center. He also runs Ingalls Music Studio in Rutland and has led the Red
+    Clover Jazz Trio in a weekly gig since 2015. He is a partner in BDI
+    Enterprises, which runs the camp.
+
+- id: tom-cleary
+  name: Tom Cleary
+  role: Staff Musician
+  instrument: Piano and keyboards
+  headshot: ../images/faculty/tom-cleary.jpg
+  headshotAlt: Tom Cleary seated at a piano
+  tracks: []
+  links:
+    - label: You Are Here (2019, Birdcode)
+      href: https://www.youtube.com/playlist?list=OLAK5uy_lcKiKfqaT68btXT2JroEHITzrujGT1ZHM
+  bio: >-
+    Tom Cleary is a pianist trained in both jazz improvisation and classical
+    piano. He has taught in the University of Vermont's jazz studies program, in
+    the Flynn Arts jazz program and privately.
+
+- id: austin-mcmahon
+  name: Austin McMahon
+  role: Staff Musician
+  instrument: Drums
+  headshot: ../images/faculty/austin-mcmahon.jpg
+  headshotAlt: Austin McMahon playing drums in a studio
+  tracks: []
+  links: []
+  # TODO: bio is short; ask for a fuller one
+  bio: >-
+    Austin McMahon is a Boston-based jazz drummer who performs regularly with
+    saxophonist Jerry Bergonzi and has toured widely.
+
+- id: bear-irwin
+  name: Bear Irwin
+  role: Staff Musician
+  instrument: Trombone
+  headshot: ../images/faculty/bear-irwin.jpg
+  headshotAlt: Bear Irwin holding his trombone
+  tracks: []
+  links: []
+  bio: >-
+    Bear Irwin has been lead trombonist of the Vermont Jazz Ensemble since 1976.
+    He taught instrumental music in public schools from 1970 until he retired in
+    2015, and he also taught trombone at Middlebury College. He is a past
+    president of the Vermont Music Educators Association.
+
+- id: tony-barrows
+  name: Tony Barrows
+  role: Sound Technician and Media Manager
+  instrument: Woodwinds
+  headshot: ../images/faculty/tony-barrows.jpg
+  headshotAlt: Tony Barrows playing saxophone
+  tracks: []
+  links: []
+  bio: >-
+    Tony Barrows grew up in Montpelier, Vermont, and has run sound for
+    Montpelier High School productions. He plays with the Vermont Symphonic
+    Winds and the Vermont Jazz Ensemble. He studied psychology at the University
+    of Hartford and complex systems and data science at the University of
+    Vermont. He serves on the board of the Lamoille County Players and is a
+    partner in BDI Enterprises, which runs the camp.
+
+- id: jared-johnson
+  name: Jared Johnson
+  role: Sound Technician (Magnum PA)
+  instrument: ""
+  headshot: ../images/faculty/jared-johnson.jpg
+  headshotAlt: Jared Johnson playing electric bass
+  tracks: []
+  links: []
+  # TODO: no bio yet; request one.
+  # Note: on the current staff page, his anchor link points to #ColinFodaski by mistake
+  bio: ""

@@ -1,0 +1,23 @@
+# Camp fees. Prices are whole dollars, in the same order as `columns`.
+# TODO: these are the 2026 prices. Confirm for 2027.
+
+columns:
+  - label: Shared with another camper
+    note: per camper
+  - label: Single room
+    note: per camper
+  - label: Shared with a non-camper partner
+    note: per room
+
+rooms:
+  - room: 2 Queens
+    prices: [2270, 2780, 3476]
+  - room: 1 King
+    prices: [2300, 2827, 3523]
+  - room: Studio with Murphy queen and kitchenette
+    prices: [2260, 2739, 3435]
+  - room: Queen suite with Murphy queen and kitchenette
+    prices: [2380, 3014, 3710]
+
+included: Your room, breakfasts and dinners, hors d'oeuvres, tuition and camp amenities for the whole week.
+notIncluded: Travel, lunches, extra nights, private lessons, gratuities and incidentals.

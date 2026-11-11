@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output and Astro's generated types/cache
+dist/
+.astro/
+
+# Hosting tools' local state (Cloudflare, Netlify)
+.wrangler/
+.netlify/
+.dev.vars
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Source material that isn't part of the site:
+# - staff/: temporary drop folder; photos and bios have been copied into content/
+# - external/current-site/: raw downloads from the old Weebly site; the ones the
+#   site uses are already in content/images/
+staff/
+external/current-site/

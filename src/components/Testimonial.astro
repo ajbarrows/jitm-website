@@ -1,0 +1,23 @@
+---
+// A short camper quote. `feature` is large and stands alone; `inline` sits at the
+// end of a section. Drafts only render in `npm run dev`, with a visible badge.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  t: CollectionEntry<'testimonials'>['data'];
+  variant?: 'feature' | 'inline' | 'card';
+}
+const { t, variant = 'inline' } = Astro.props;
+// Credit people as first name and last initial, e.g. "Mark Madden" -> "Mark M."
+const words = t.name.trim().split(/\s+/);
+const displayName = words.length > 1 ? `${words[0]} ${words[words.length - 1][0]}.` : t.name;
+---
+<figure class:list={['testimonial', `testimonial-${variant}`, { 'is-draft': t.draft }]}>
+  {t.draft && <span class="draft-badge">Draft · not shown on the live site</span>}
+  <span class="quote-mark" aria-hidden="true">“</span>
+  <blockquote><p>{t.quote}</p></blockquote>
+  <figcaption>
+    <span class="testimonial-name">{displayName}</span>
+    {t.role && <span class="testimonial-detail">{t.role}</span>}
+  </figcaption>
+</figure>

@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Testimonial from '../components/Testimonial.astro';
+import { getData, getPage, getTestimonials, fill, md, mdInline } from '../lib/content';
+
+const data = await getData();
+const { camp, links, deadlines } = data;
+const page = await getPage('home');
+const d = page.data;
+const [featured, ...moreQuotes] = await getTestimonials({ spot: 'home' });
+const gridQuotes = moreQuotes.slice(0, 3);
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)} bareTitle>
+  {d.hero && (
+    <section class="hero">
+      <Image src={d.hero.image} alt={d.hero.imageAlt} class="hero-img" widths={[800, 1100]} sizes="100vw" loading="eager" fetchpriority="high" />
+      <div class="hero-shade"></div>
+      <div class="container hero-content">
+        <p class="label label-light">{fill(d.hero.eyebrow, data)}</p>
+        <h1 set:html={mdInline(d.hero.headline, data)} />
+        <p class="hero-meta">{camp.dates}</p>
+        <div class="btn-row center">
+          <a href="/apply/" class="btn btn-large">Apply for {camp.year}</a>
+          <a href={links.social.youtube} class="btn btn-large btn-light">Watch past years</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="facts" aria-label="Camp at a glance">
+    <div class="container facts-grid">
+      <div><p class="label">When</p><p class="fact-value">{camp.dates}</p></div>
+      <div><p class="label">Where</p><p class="fact-value">{camp.venue}<br />{camp.town}</p></div>
+      <div><p class="label">Who</p><p class="fact-value">{camp.audience}</p></div>
+      <div><p class="label">Apply by</p><p class="fact-value">{deadlines[0]?.date}</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow center">
+      <SectionTitle label="The camp" title={d.aboutHeading} />
+      <div class="prose prose-large" set:html={md(page.body, data)} />
+    </div>
+  </section>
+
+  {d.gallery && d.gallery.length > 0 && (
+    <section class="photo-strip" aria-label="Photos from past camps">
+      {d.gallery.map((g) => <Image src={g.image} alt={g.alt} widths={[400, 700]} sizes="(min-width: 700px) 25vw, 50vw" />)}
+    </section>
+  )}
+
+  {d.values && (
+    <section class="section">
+      <div class="container">
+        <SectionTitle label="What we value" title="Built around the music and the people" />
+        <ol class="values">
+          {d.values.map((v) => <li><h3>{v.title}</h3><p>{fill(v.text, data)}</p></li>)}
+        </ol>
+      </div>
+    </section>
+  )}
+
+  {featured && (
+    <section class="section section-warm">
+      <div class="container narrow"><Testimonial t={featured} variant="feature" /></div>
+    </section>
+  )}
+
+  {d.video && links.featureVideo && (
+    <a class="video-feature" href={`https://www.youtube.com/watch?v=${links.featureVideo}`}>
+      <Image src={d.video.thumbnail} alt="" widths={[800, 1280]} sizes="100vw" />
+      <span class="video-shade"></span>
+      <span class="video-content">
+        <span class="play" aria-hidden="true"></span>
+        <span class="label label-light">Watch on YouTube</span>
+        <span class="video-title">{fill(d.video.caption, data)}</span>
+      </span>
+    </a>
+  )}
+
+  <section class="section section-warm">
+    <div class="container narrow center">
+      <SectionTitle label={d.whoHeading ?? 'Who should apply'} />
+      <p class="statement" set:html={mdInline(d.who, data)} />
+      <div class="btn-row center">
+        <a href="/apply/" class="btn btn-dark">How to apply</a>
+        <a href="/scholarships/" class="btn btn-outline">Scholarships</a>
+      </div>
+    </div>
+  </section>
+
+  {gridQuotes.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <SectionTitle label="In their words" />
+        <div class="testimonial-grid">
+          {gridQuotes.map((t) => <Testimonial t={t} variant="card" />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

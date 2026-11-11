@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import TestimonialGroup from '../components/TestimonialGroup.astro';
+import { getData, getPage, getTestimonials, fill, md, isSet } from '../lib/content';
+
+const data = await getData();
+const page = await getPage('earn-college-credit');
+const d = page.data;
+const quotes = await getTestimonials({ spot: 'credit' });
+const links = data.collegeCredit.links.filter((l) => isSet(l.href));
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)}>
+  <PageHeader eyebrow={data.collegeCredit.course} title={fill(d.title, data)} image={d.banner} imageAlt={d.bannerAlt} />
+  <section class="section">
+    <div class="container narrow center">
+      <SectionTitle label="Graduate and continuing-education credit" />
+      <div class="prose prose-large" set:html={md(page.body, data)} />
+      {links.length > 0
+        ? <ul class="link-list center">{links.map((l) => <li><a href={l.href}>{l.label} ↗</a></li>)}</ul>
+        : <p class="muted">Registration details for this year's course will be posted here soon.</p>}
+      <TestimonialGroup quotes={quotes} />
+    </div>
+  </section>
+</Base>

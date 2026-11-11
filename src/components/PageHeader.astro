@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+const { eyebrow, title, lede, image, imageAlt = '' } = Astro.props;
+---
+<section class="banner">
+  {image && <Image src={image} alt={imageAlt} class="banner-img" widths={[800, 1100]} sizes="100vw" loading="eager" fetchpriority="high" />}
+  <div class="banner-shade"></div>
+  <div class="container banner-content">
+    {eyebrow && <p class="label label-light">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {lede && <p class="banner-lede">{lede}</p>}
+    <slot />
+  </div>
+</section>

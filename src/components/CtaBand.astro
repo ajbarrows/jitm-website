@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+import photo from '../../content/images/photos/dsc01701.jpg';
+import { getData } from '../lib/content';
+
+const { camp, deadlines } = await getData();
+const first = deadlines[0];
+---
+<section class="cta-band">
+  <Image src={photo} alt="" class="cta-img" widths={[800, 1100]} sizes="100vw" />
+  <div class="cta-shade"></div>
+  <div class="container cta-inner">
+    <div>
+      <h2>Ready to play?</h2>
+      {first && <p>Applications for {camp.year} are due {first.date}.</p>}
+    </div>
+    <a href="/apply/" class="btn btn-large">Apply now</a>
+  </div>
+</section>

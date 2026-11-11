@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../content/images/logo.png';
+import { getData, isSet, telHref } from '../lib/content';
+const { camp, links } = await getData();
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" aria-label="Jazz in the Mountains, home"><Image src={logo} alt="" width={140} densities={[1, 2]} /></a>
+      <p>{camp.dates}<br />{camp.venue}<br />{camp.town}</p>
+    </div>
+    <div>
+      <h2 class="footer-heading">Contact</h2>
+      <ul class="plain">
+        <li><a href={`mailto:${camp.contact.email}`}>{camp.contact.email}</a></li>
+        <li><a href={telHref(camp.contact.phone)}>{camp.contact.phone}</a></li>
+        <li>{camp.contact.mailingAddress.join(', ')}</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-heading">Explore</h2>
+      <ul class="plain">
+        <li><a href="/apply/">Apply</a></li>
+        <li><a href="/faculty/">Faculty</a></li>
+        <li><a href="/scholarships/">Scholarships</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/earn-college-credit/">Earn college credit</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-heading">Follow</h2>
+      <ul class="plain">
+        <li><a href={links.social.youtube}>YouTube</a></li>
+        <li><a href={links.social.facebook}>Facebook</a></li>
+        <li><a href={links.venue}>{camp.venue}</a></li>
+        {isSet(links.social.googleReviews) && <li><a href={links.social.googleReviews}>Review us on Google</a></li>}
+        {isSet(links.donate) && <li><a href={links.donate}>Support our mission</a></li>}
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-legal">
+    <p>© {year} {camp.organization.legalName}, d/b/a {camp.organization.name}</p>
+  </div>
+</footer>

@@ -1,0 +1,20 @@
+# External links. Leave a link as "" until it exists; the site hides its button.
+
+forms:
+  application: https://docs.google.com/forms/d/e/1FAIpQLSfF7NOm2Etgl3f4zLAWxDlRzcDJgCcpFuumNUmobCJU72CrxQ/viewform?usp=header
+  videoUpload: https://docs.google.com/forms/d/e/1FAIpQLSejJQxn156nBgKXmcneiHuAysX430me8e17wyV8ra0odMZ7xA/viewform?usp=header
+  scholarship: "" # TODO: form not yet created
+
+auditionMusic: https://drive.google.com/drive/folders/1rqdyUjfrTJLk_k301gltVHmzkf_FrvjL?usp=share_link
+donate: "" # TODO: Stripe link not yet created
+
+# YouTube video ID for the home page feature (the part after "v=" or "youtu.be/").
+featureVideo: 3iuV-SafdaE # TODO: confirm or replace with a re-edit
+
+venue: https://www.killington.com/plan-your-trip/lodging-vacation-packages/killington-grand-resort-hotel
+directions: https://www.google.com/maps/dir/?api=1&destination=Killington+Grand+Resort+Hotel%2C+Killington%2C+VT
+
+social:
+  youtube: https://www.youtube.com/@jazzinthemountains7403
+  facebook: https://www.facebook.com/jazzmountains
+  googleReviews: "" # TODO: once the Business Profile exists
