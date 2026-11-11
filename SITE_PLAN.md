@@ -82,7 +82,7 @@ Search the `content/` folder for `TODO` to see every gap.
 ## 5. Build sequence
 
 1. ~~**Scaffold:** Astro project, content schemas, layout, design system and all pages.~~ Done (draft)
-2. **Version control:** Create a GitHub repository and push the project. A temporary preview publishes to GitHub Pages (https://ajbarrows.github.io/jitm-website/) via `.github/workflows/github-pages.yml`; it is hidden from search engines. Delete that workflow after the move to Cloudflare.
+2. **Version control:** Create a GitHub repository and push the project. A temporary preview publishes to GitHub Pages (https://ajbarrows.github.io/jitm-website/) by running `npm run deploy:pages` (builds locally and pushes to the `gh-pages` branch); it is hidden from search engines. Delete `scripts/deploy-gh-pages.sh` after the move to Cloudflare.
 3. **Content:** Fill the `TODO`s, add photos, headshots and MP3s, and review copy.
 4. **Host:** Connect the repository to Netlify or Cloudflare Pages; every push to `main` deploys. Check the preview URL.
 5. **Test:** Mobile layouts, all links and forms, a live Stripe donation, page titles and descriptions, image alt text, and a Lighthouse audit.
