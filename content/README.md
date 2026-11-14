@@ -14,6 +14,7 @@ Everything a person edits lives here. The code in `../src/` reads these files, s
 | `data/links.yaml` | Application and video-upload forms, scholarship form, audition music, donation link, feature video, venue and directions links, social links |
 | `data/faculty.yaml` | Faculty and staff, in display order: name, role, instrument, headshot, MP3s, links, bio |
 | `data/college-credit.yaml` | Earn College Credit course, provider, contact and registration links |
+| `data/audition.yaml` | Video audition instructions on the Apply page: general sections, then Horns, Piano/guitar/bass and Drums |
 | `data/testimonials.yaml` | Short camper quotes and where each one appears |
 | `pages/*.md` | Page wording. Settings at the top between the `---` lines; body text below |
 | `images/` | Logo, photos (`images/photos/`), faculty headshots (`images/faculty/`) |
@@ -42,6 +43,8 @@ If a token is misspelled, the build stops and names the bad token, so mistakes n
 - `id` becomes the page address (`jane-doe` → `/faculty/jane-doe/`). Use lowercase and hyphens.
 - `headshot`: put a horizontal photo in `images/faculty/` and point to it, e.g. `headshot: ../images/faculty/jane-doe.jpg`. Until then the card shows initials.
 - `tracks`: put MP3s in `../public/audio/` and list them, e.g. `- { title: Blue Bossa, file: /audio/jane-doe-blue-bossa.mp3 }`.
+- `administrator: true` lists someone under "Camp administration" at the top of the Faculty page (their other role still shows).
+- `owner: true` adds a "Co-owner" tag and names them as owners of the company in `camp.yaml` (`organization.legalName`).
 - `draft: true` hides someone without deleting them.
 
 **Add a link that isn't ready yet:** leave it as `""`. The site hides the button until it's filled in.

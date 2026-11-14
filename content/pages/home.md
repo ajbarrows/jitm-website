@@ -4,8 +4,8 @@ description: A week-long jazz camp for adult intermediate and advanced instrumen
 hero:
   eyebrow: Adult jazz camp · {{camp.town}}
   headline: A week of big band and small-group jazz in the *Green Mountains.*
-  image: ../images/photos/dsc01683.jpg
-  imageAlt: Campers holding their instruments on a garden path, with Vermont mountains behind them
+  image: ../images/photos/dsc01722.jpg
+  imageAlt: Smiling campers holding their instruments in a garden, with Vermont mountains behind them
 aboutHeading: Rehearse all week. Perform Thursday night.
 values:
   - title: Growth first
@@ -30,12 +30,12 @@ who: >-
 gallery:
   - image: ../images/photos/dsc01665.jpg
     alt: A trumpeter plays under blue stage light
-  - image: ../images/photos/img-6814.jpg
-    alt: A saxophonist reads through a chart in rehearsal
-  - image: ../images/photos/img-6846.jpg
-    alt: A flutist and trumpeter perform on stage under blue lights
-  - image: ../images/photos/dsc01645.jpg
-    alt: A trombonist talks with campers during a sectional
+  - image: ../images/photos/2022-dsc01576.jpg
+    alt: A saxophonist plays into a microphone at an outdoor set
+  - image: ../images/photos/img-2056.jpg
+    alt: A pianist reads a chart during the evening concert
+  - image: ../images/photos/2025-trumpet-section.jpg
+    alt: Trumpet players read through a chart in rehearsal
 ---
 
 Jazz in the Mountains is a week-long camp in Vermont for adult instrumentalists, music educators and working jazz musicians. You'll join an ensemble that rehearses all week and plays the Thursday evening performance, with coaching, improvisation and plenty of time with other players along the way.

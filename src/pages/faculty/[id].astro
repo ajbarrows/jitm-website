@@ -7,6 +7,7 @@ import SectionTitle from '../../components/SectionTitle.astro';
 import Monogram from '../../components/Monogram.astro';
 import Testimonial from '../../components/Testimonial.astro';
 import { getData, getFaculty, getPage, getTestimonials, md } from '../../lib/content';
+import { companyName } from '../../lib/faculty';
 
 export async function getStaticPaths() {
   const faculty = await getFaculty();
@@ -17,11 +18,12 @@ const f = entry.data;
 const data = await getData();
 const { data: facultyPage } = await getPage('faculty');
 const quotes = await getTestimonials({ faculty: entry.id });
+const company = companyName(data.camp.organization.legalName);
 const hasBio = f.bio.trim().length > 0;
 const description = `${f.name}, ${f.role} at Jazz in the Mountains${f.instrument ? ` (${f.instrument.toLowerCase()})` : ''}.`;
 ---
 <Base title={f.name} description={description}>
-  <PageHeader eyebrow={f.role} title={f.name} lede={f.instrument || undefined} image={facultyPage.banner} />
+  <PageHeader title={f.name} image={facultyPage.banner} strip />
   <article class="section">
     <div class="container profile">
       <div class="profile-photo">
@@ -30,6 +32,17 @@ const description = `${f.name}, ${f.role} at Jazz in the Mountains${f.instrument
           : <Monogram name={f.name} />}
       </div>
       <div class="profile-body">
+        <header class="profile-header">
+          <p class="label">{f.role}</p>
+          <h1>{f.name}</h1>
+          {f.instrument && <p class="profile-instrument">{f.instrument}</p>}
+          {(f.administrator || f.owner) && (
+            <ul class="profile-tags">
+              {f.administrator && <li>Camp administration</li>}
+              {f.owner && <li>Co-owner, {company}</li>}
+            </ul>
+          )}
+        </header>
         <SectionTitle label="Biography" align="left" />
         {hasBio ? <div class="prose prose-large" set:html={md(f.bio, data)} /> : <p class="muted">Biography coming soon.</p>}
         {quotes.map((t) => <Testimonial t={t} />)}

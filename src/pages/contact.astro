@@ -30,7 +30,7 @@ const page = await getPage('contact');
     </div>
   </section>
   <section class="split-media">
-    {page.data.venuePhoto && <Image src={page.data.venuePhoto} alt={page.data.venuePhotoAlt ?? ''} widths={[700, 1100]} sizes="(min-width: 900px) 50vw, 100vw" />}
+    {page.data.venuePhoto && <Image src={page.data.venuePhoto} alt={page.data.venuePhotoAlt ?? ''} widths={[700, 1100, 1600]} sizes="(min-width: 900px) 50vw, 100vw" />}
     <div class="split-media-body">
       <SectionTitle label="Where camp is held" title={camp.venue} align="left" />
       <p class="big-text">{camp.town}</p>

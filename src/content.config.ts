@@ -9,6 +9,8 @@ import { parse } from 'yaml';
 // A Git-based CMS can be pointed at these files later without touching /src.
 
 const link = z.object({ label: z.string(), href: z.string() });
+/** A heading plus Markdown text. */
+const block = z.object({ title: z.string(), body: z.string() });
 
 /** Load a YAML file that holds one object as a single entry with id "main". */
 const single = (path: string) => file(path, { parser: (text) => ({ main: parse(text) }) });
@@ -38,10 +40,26 @@ const deadlines = defineCollection({
 const fees = defineCollection({
   loader: single('./content/data/fees.yaml'),
   schema: z.object({
-    columns: z.array(z.object({ label: z.string(), note: z.string() })),
-    rooms: z.array(z.object({ room: z.string(), prices: z.array(z.number()) })),
+    labels: z.object({
+      single: z.object({ label: z.string(), note: z.string() }),
+      shared: z.object({ label: z.string(), note: z.string() }),
+    }),
+    rooms: z.array(z.object({ room: z.string(), single: z.number(), shared: z.number() })),
+    commuter: z.object({ label: z.string(), note: z.string().default(''), price: z.number(), draft: z.boolean().default(false) }).optional(),
+    partner: z.object({ price: z.number(), note: z.string().default(''), draft: z.boolean().default(false) }).optional(),
     included: z.string(),
     notIncluded: z.string(),
+  }),
+});
+
+const audition = defineCollection({
+  loader: single('./content/data/audition.yaml'),
+  schema: z.object({
+    general: z.array(block).default([]),
+    horns: block,
+    rhythm: block,
+    drums: block,
+    questions: block.optional(),
   }),
 });
 
@@ -98,6 +116,10 @@ const faculty = defineCollection({
       tracks: z.array(z.object({ title: z.string(), file: z.string() })).default([]),
       links: z.array(link).default([]),
       bio: z.string().default(''),
+      /** Part of the camp's administrative team (listed separately on the Faculty page). */
+      administrator: z.boolean().default(false),
+      /** Co-owner of the parent company (camp.yaml organization.legalName). */
+      owner: z.boolean().default(false),
       draft: z.boolean().default(false),
       order: z.number(),
     }),
@@ -128,7 +150,6 @@ const pages = defineCollection({
         body: z.string(),
         button: link.optional(),
       })).optional(),
-      audition: z.array(z.object({ title: z.string(), body: z.string(), image: image().optional(), imageAlt: z.string().optional() })).optional(),
       // Contact
       venuePhoto: image().optional(),
       venuePhotoAlt: z.string().optional(),
@@ -139,4 +160,4 @@ const pages = defineCollection({
     }),
 });
 
-export const collections = { camp, deadlines, fees, links, collegeCredit, faculty, testimonials, pages };
+export const collections = { camp, deadlines, fees, audition, links, collegeCredit, faculty, testimonials, pages };

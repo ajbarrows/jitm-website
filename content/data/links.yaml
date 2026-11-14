@@ -1,11 +1,11 @@
 # External links. Leave a link as "" until it exists; the site hides its button.
 
 forms:
-  application: https://docs.google.com/forms/d/e/1FAIpQLSfF7NOm2Etgl3f4zLAWxDlRzcDJgCcpFuumNUmobCJU72CrxQ/viewform?usp=header
-  videoUpload: https://docs.google.com/forms/d/e/1FAIpQLSejJQxn156nBgKXmcneiHuAysX430me8e17wyV8ra0odMZ7xA/viewform?usp=header
+  application: https://docs.google.com/forms/d/e/1FAIpQLSd2DcaCdqPrdQ4rGFNZUgGMG98JyvuVrX_YupgrMkpj7tx0Cg/viewform?usp=sharing&ouid=118170806405267712580
+  videoUpload: https://docs.google.com/forms/d/e/1FAIpQLSf41e6FErKk2M0K9k_hEDKqEpc6H6jJ6yhtl1tFiVglr1wcRg/viewform?usp=sharing&ouid=108550171788192432558
   scholarship: "" # TODO: form not yet created
 
-auditionMusic: https://drive.google.com/drive/folders/1rqdyUjfrTJLk_k301gltVHmzkf_FrvjL?usp=share_link
+auditionMusic: https://drive.google.com/drive/folders/1o3nSfi2ygFr-C3Njyme4G71GJ9yr1GSM?usp=sharing
 donate: "" # TODO: Stripe link not yet created
 
 # YouTube video ID for the home page feature (the part after "v=" or "youtu.be/").

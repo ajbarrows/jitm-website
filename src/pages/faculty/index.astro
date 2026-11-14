@@ -1,38 +1,49 @@
 ---
-import { url } from '../../lib/url';
-import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Monogram from '../../components/Monogram.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import FacultyCard from '../../components/FacultyCard.astro';
 import TestimonialGroup from '../../components/TestimonialGroup.astro';
 import { getData, getPage, getFaculty, getTestimonials, fill, md } from '../../lib/content';
+import { companyName, listNames } from '../../lib/faculty';
 
 const data = await getData();
 const page = await getPage('faculty');
 const faculty = await getFaculty();
 const quotes = await getTestimonials({ spot: 'faculty' });
+
+const admins = faculty.filter((f) => f.data.administrator);
+const others = faculty.filter((f) => !f.data.administrator);
+const owners = faculty.filter((f) => f.data.owner);
+const company = companyName(data.camp.organization.legalName);
 ---
 <Base title={fill(page.data.title, data)} description={fill(page.data.description, data)}>
   <PageHeader eyebrow="Faculty and staff" title="Learn from players who love to teach" image={page.data.banner} imageAlt={page.data.bannerAlt}>
     <div class="banner-lede" set:html={md(page.body, data)} />
   </PageHeader>
+
+  {admins.length > 0 && (
+    <section class="section section-warm">
+      <div class="container">
+        <SectionTitle label="Camp administration" />
+        {owners.length > 0 && (
+          <p class="section-intro">
+            {data.camp.organization.name} is owned and operated by {data.camp.organization.legalName},
+            a partnership of {listNames(owners.map((o) => o.data.name))}.
+          </p>
+        )}
+        <ul class:list={['faculty-grid', { 'faculty-grid-4': admins.length === 4 }]}>
+          {admins.map((f) => <li><FacultyCard f={f} company={company} /></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
   <section class="section">
     <div class="container">
+      {admins.length > 0 && <SectionTitle label="Faculty and staff" />}
       <ul class="faculty-grid">
-        {faculty.map((f) => (
-          <li>
-            <a href={url(`/faculty/${f.id}/`)} class="faculty-card">
-              <div class="faculty-photo">
-                {f.data.headshot
-                  ? <Image src={f.data.headshot} alt={f.data.headshotAlt} widths={[400, 800]} sizes="(min-width: 900px) 33vw, (min-width: 560px) 50vw, 100vw" />
-                  : <Monogram name={f.data.name} />}
-              </div>
-              <p class="label">{f.data.role}</p>
-              <h2>{f.data.name}</h2>
-              {f.data.instrument && <p class="instrument">{f.data.instrument}</p>}
-            </a>
-          </li>
-        ))}
+        {others.map((f) => <li><FacultyCard f={f} company={company} /></li>)}
       </ul>
       <TestimonialGroup quotes={quotes} />
     </div>

@@ -3,7 +3,12 @@ import { marked } from 'marked';
 import { withBase } from './url';
 
 function required<T>(entry: { data: T } | undefined, name: string): T {
-  if (!entry) throw new Error(`Missing data file for "${name}" in content/data/`);
+  if (!entry) {
+    throw new Error(
+      `No data for "${name}". Check that content/data/${name}.yaml exists and has the expected fields ` +
+        `(the terminal shows which field is wrong). If you just changed src/content.config.ts, restart the dev server.`,
+    );
+  }
   return entry.data;
 }
 
@@ -20,6 +25,12 @@ export async function getData() {
   const deadline: Record<string, string> = Object.fromEntries(deadlines.map((d) => [d.id, d.date]));
   return { camp, fees, links, collegeCredit, deadlines, deadline };
 }
+
+/** Video audition instructions (content/data/audition.yaml). */
+export async function getAudition() {
+  return required(await getEntry('audition', 'main'), 'audition');
+}
+
 export type SiteData = Awaited<ReturnType<typeof getData>>;
 
 export async function getPage(id: string) {

@@ -1,0 +1,64 @@
+# Video audition instructions on the Apply page.
+#
+#   general: always shown, above the instrument dropdowns, in this order.
+#   horns / rhythm / drums: the instructions inside each instrument's dropdown.
+#   questions: shown last, below the dropdowns.
+#
+# Each has a `title` (the heading) and a `body`. The body is Markdown:
+# lists, **bold** and [links](https://…) work, and so do tokens like {{camp.year}}.
+# Keep `body: |-` so line breaks are kept; a blank line starts a new paragraph.
+
+general:
+  - title: Naming and uploading your video
+    body: |-
+      Name your file with your name, instrument and the camp year, like this:
+
+      **FirstnameLastname_Instrument_JITM{{camp.year}}.mp4**
+
+      You may send more than one video. Saxophonists can send a single video and list any other woodwinds they play.
+  - title: Recording tips
+    body: |-
+      1. A smartphone or tablet works fine. Ask a friend to hold it if that helps.
+      2. Record in a room without echo, such as a carpeted bedroom.
+      3. Light your face well, and keep at least part of your instrument in the frame.
+horns:
+  title: Horns
+  body: |-
+    Everyone uses the same play-along track.
+
+    - **Chorus 1:** play the head
+    - **Chorus 2:** improvise (optional, but recommended)
+    - **Chorus 3:** play the head
+
+    **Lead trumpet, lead trombone and bass trombone candidates:** also play the lead or bass excerpt from the PDF unaccompanied, without counting the rests.
+rhythm:
+  title: Piano, guitar and bass
+  body: |-
+    Use the track for your instrument. Chords are removed from the piano and guitar track, and bass is removed from the bass track.
+
+    - **Chorus 1:** head
+    - **Chorus 2:** accompany
+    - **Chorus 3:** improvise (optional, but recommended)
+    - **Chorus 4:** head
+drums:
+  title: Drums
+  body: |-
+    **Drum styles:** Drummers should prepare a video playing along to the audio tracks (linked above) demonstrating your playing on the following grooves.
+    Sixteen measures on each groove is all that is needed.
+
+    - Samba
+    - Fast Swing
+    - Jazz Ballad (perhaps with brushes)
+    - Jazz Waltz
+    - Funk
+    - Bossa
+
+    **Trading Fours:**
+
+    Please play along to [this YouTube video](https://www.youtube.com/watch?v=wEhtPFUuSIU&authuser=2) to demonstrate your playing of medium swing and trading fours in that style.
+    Directions are including in the scrolling video  The video has ten minutes of playing which is great for practice, but you don't
+    need to include more than 3 minutes of playing along with video.
+questions:
+  title: Questions?
+  body: |-
+    If you have any questions about your audition, email [ensembles@jazzinthemountains.com](mailto:ensembles@jazzinthemountains.com).

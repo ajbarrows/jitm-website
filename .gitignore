@@ -31,4 +31,4 @@ Thumbs.db
 # - external/current-site/: raw downloads from the old Weebly site; the ones the
 #   site uses are already in content/images/
 staff/
-external/current-site/
+external/

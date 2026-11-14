@@ -16,7 +16,7 @@ const gridQuotes = moreQuotes.slice(0, 3);
 <Base title={fill(d.title, data)} description={fill(d.description, data)} bareTitle>
   {d.hero && (
     <section class="hero">
-      <Image src={d.hero.image} alt={d.hero.imageAlt} class="hero-img" widths={[800, 1100]} sizes="100vw" loading="eager" fetchpriority="high" />
+      <Image src={d.hero.image} alt={d.hero.imageAlt} class="hero-img" widths={[800, 1400, 2000, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />
       <div class="hero-shade"></div>
       <div class="container hero-content">
         <p class="label label-light">{fill(d.hero.eyebrow, data)}</p>
@@ -24,7 +24,7 @@ const gridQuotes = moreQuotes.slice(0, 3);
         <p class="hero-meta">{camp.dates}</p>
         <div class="btn-row center">
           <a href={url('/apply/')} class="btn btn-large">Apply for {camp.year}</a>
-          <a href={links.social.youtube} class="btn btn-large btn-light">Watch past years</a>
+          <a href={url('/faculty/')} class="btn btn-large btn-light">Meet the faculty</a>
         </div>
       </div>
     </section>
@@ -48,7 +48,7 @@ const gridQuotes = moreQuotes.slice(0, 3);
 
   {d.gallery && d.gallery.length > 0 && (
     <section class="photo-strip" aria-label="Photos from past camps">
-      {d.gallery.map((g) => <Image src={g.image} alt={g.alt} widths={[400, 700]} sizes="(min-width: 700px) 25vw, 50vw" />)}
+      {d.gallery.map((g) => <Image src={g.image} alt={g.alt} widths={[400, 700, 1000]} sizes="(min-width: 700px) 25vw, 50vw" />)}
     </section>
   )}
 

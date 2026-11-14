@@ -1,16 +1,19 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import TestimonialGroup from '../components/TestimonialGroup.astro';
-import { getData, getPage, getTestimonials, fill, md, isSet, telHref } from '../lib/content';
+import { getAudition, getData, getPage, getTestimonials, fill, md, isSet } from '../lib/content';
 
 const data = await getData();
 const { camp, fees, links, deadlines, deadline } = data;
 const { data: d } = await getPage('apply');
 const quotes = await getTestimonials({ spot: 'apply' });
+const audition = await getAudition();
 const formatPrice = (n: number) => `$${n.toLocaleString('en-US')}`;
+const { single, shared } = fees.labels;
+const partner = fees.partner && !fees.partner.draft ? fees.partner : undefined;
+const commuter = fees.commuter && !fees.commuter.draft ? fees.commuter : undefined;
 ---
 <Base title={fill(d.title, data)} description={fill(d.description, data)}>
   <PageHeader eyebrow={`${camp.dates} · ${camp.town}`} title={fill(d.title, data)} lede={d.intro && fill(d.intro, data)} image={d.banner} imageAlt={d.bannerAlt} />
@@ -64,19 +67,40 @@ const formatPrice = (n: number) => `$${n.toLocaleString('en-US')}`;
           <thead>
             <tr>
               <th scope="col">Room type</th>
-              {fees.columns.map((c) => <th scope="col">{c.label}<span class="th-note">{c.note}</span></th>)}
+              <th scope="col">{single.label}<span class="th-note">{single.note}</span></th>
+              <th scope="col">{shared.label}<span class="th-note">{shared.note}</span></th>
             </tr>
           </thead>
           <tbody>
             {fees.rooms.map((r) => (
               <tr>
                 <th scope="row">{r.room}</th>
-                {r.prices.map((p, i) => <td data-label={`${fees.columns[i]?.label} (${fees.columns[i]?.note})`}>{formatPrice(p)}</td>)}
+                <td data-label={`${single.label} (${single.note})`}>{formatPrice(r.single)}</td>
+                <td data-label={`${shared.label} (${shared.note})`}>{formatPrice(r.shared)}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {(partner || commuter) && (
+        <div class:list={['fee-extras', { 'fee-extras-two': partner && commuter }]}>
+          {partner && (
+            <div class="fee-extra fee-extra-partner">
+              <p class="label">Bringing a partner who isn't a camper?</p>
+              <p class="fee-extra-price">+{formatPrice(partner.price)}</p>
+              <p>Add this to the single-room price for any room type.</p>
+              {partner.note && <p>{partner.note}</p>}
+            </div>
+          )}
+          {commuter && (
+            <div class="fee-extra">
+              <p class="label">{commuter.label}</p>
+              <p class="fee-extra-price">{formatPrice(commuter.price)}</p>
+              {commuter.note && <p>{commuter.note}</p>}
+            </div>
+          )}
+        </div>
+      )}
       <div class="included">
         <div><p class="label">Included</p><p>{fees.included}</p></div>
         <div><p class="label">Not included</p><p>{fees.notIncluded}</p></div>
@@ -92,18 +116,31 @@ const formatPrice = (n: number) => `$${n.toLocaleString('en-US')}`;
         {isSet(links.auditionMusic) && <a href={links.auditionMusic} class="btn btn-outline">Sheet music and recordings</a>}
         {isSet(links.forms.videoUpload) && <a href={links.forms.videoUpload} class="btn btn-dark">Upload your video</a>}
       </div>
-      <div class="accordion">
-        {d.audition?.map((a, i) => (
-          <details open={i === 0}>
-            <summary>{a.title}</summary>
-            <div class="prose">
-              <Fragment set:html={md(a.body, data)} />
-              {a.image && <Image src={a.image} alt={a.imageAlt ?? ''} class="inline-img" />}
+      {audition && (
+        <>
+          {audition.general.map((g) => (
+            <div class="audition-general">
+              <h3>{g.title}</h3>
+              <div class="prose" set:html={md(g.body, data)} />
             </div>
-          </details>
-        ))}
-      </div>
-      <p class="center muted">Questions? Email <a href={`mailto:${camp.contact.email}`}>{camp.contact.email}</a> or call <a href={telHref(camp.contact.phone)}>{camp.contact.phone}</a>.</p>
+          ))}
+          <h3 class="audition-pick">Instructions for your instrument</h3>
+          <div class="accordion">
+            {[audition.horns, audition.rhythm, audition.drums].map((a) => (
+              <details>
+                <summary>{a.title}</summary>
+                <div class="prose" set:html={md(a.body, data)} />
+              </details>
+            ))}
+          </div>
+        </>
+      )}
+      {audition.questions && (
+        <div class="audition-general audition-questions">
+          <h3>{audition.questions.title}</h3>
+          <div class="prose" set:html={md(audition.questions.body, data)} />
+        </div>
+      )}
     </div>
   </section>
 </Base>

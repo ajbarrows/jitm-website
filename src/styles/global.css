@@ -170,6 +170,7 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 }
 .hero { min-height: max(620px, 100svh); }
 .banner { min-height: clamp(460px, 62vh, 620px); }
+.banner-strip { min-height: clamp(190px, 24vh, 260px); }
 .hero-img, .banner-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
 .hero-shade, .banner-shade {
   position: absolute; inset: 0; z-index: -1;
@@ -362,10 +363,23 @@ td { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric:
   tbody td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.35rem 0; white-space: normal; }
   tbody td::before { content: attr(data-label); font-family: var(--font-body); font-size: 0.85rem; color: var(--muted); }
 }
+.fee-extras { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+@media (min-width: 761px) { .fee-extras-two { grid-template-columns: 2fr 1fr; } }
+.fee-extra { padding: 1.75rem 2rem; border: 1px solid var(--line); }
+.fee-extra-partner { border: 1.5px solid var(--teal); background: var(--warm); }
+.fee-extra .label { color: var(--teal-deep); margin-bottom: 0.5rem; }
+.fee-extra-price { font-family: var(--font-display); font-size: 2rem; line-height: 1.2; margin: 0 0 0.5rem; font-variant-numeric: lining-nums tabular-nums; }
+.fee-extra p:not(.label):not(.fee-extra-price) { color: var(--muted); margin: 0; }
+.fee-extra p + p:not(.fee-extra-price) { margin-top: 0.5rem; }
+.fee-extra strong { color: var(--ink); font-weight: 600; }
 .included { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem 4rem; margin-top: 2.5rem; }
 .included .label { color: var(--teal-deep); margin-bottom: 0.4rem; }
 .included p:not(.label) { color: var(--muted); }
 
+.audition-general { margin-top: 3rem; }
+.audition-general h3, .audition-pick { font-size: 1.5rem; margin-bottom: 1rem; }
+.audition-pick { margin-top: 3.5rem; }
+.audition-pick + .accordion { margin-top: 0; }
 .accordion { margin: 3rem 0; border-top: 1.5px solid var(--ink); }
 .accordion details { border-bottom: 1px solid var(--line); }
 .accordion summary {
@@ -381,7 +395,6 @@ td { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric:
 .accordion details[open] summary::after { rotate: 0deg; }
 .accordion summary:hover { color: var(--teal-deep); }
 .accordion details > .prose { padding: 0 0 1.75rem; color: var(--text); }
-.inline-img { margin-top: 1.25rem; background: #fff; padding: 0.75rem; border: 1px solid var(--line); }
 
 /* ---------- Faculty ---------- */
 
@@ -396,6 +409,14 @@ td { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric:
 .faculty-card h2 { font-size: 1.6rem; margin-bottom: 0.25rem; }
 .faculty-card:hover h2 { color: var(--teal-deep); }
 .instrument { margin: 0; color: var(--muted); font-size: 0.95rem; }
+@media (min-width: 900px) { .faculty-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 3.5rem 1.75rem; } }
+.section-intro { max-width: 40rem; margin: -1rem auto clamp(2.25rem, 4vw, 3.25rem); text-align: center; color: var(--muted); font-size: 1.1rem; }
+.owner-tag, .profile-tags li {
+  display: inline-block; margin: 0.75rem 0 0; padding: 0.3em 0.8em; border: 1px solid var(--teal);
+  border-radius: 999px; color: var(--teal-deep); font-size: 0.72rem; font-weight: 650; letter-spacing: 0.06em;
+}
+.profile-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+.profile-tags li { margin: 0; }
 
 .monogram {
   display: grid; place-items: center;
@@ -406,6 +427,10 @@ td { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric:
 
 .profile { display: grid; gap: clamp(2.5rem, 5vw, 5rem); }
 @media (min-width: 900px) { .profile { grid-template-columns: 4fr 7fr; align-items: start; } }
+.profile-header { margin-bottom: 2.75rem; }
+.profile-header .label { color: var(--teal-deep); margin-bottom: 0.75rem; }
+.profile-header h1 { font-size: clamp(2.4rem, 1.7rem + 2.8vw, 4rem); line-height: 1.05; }
+.profile-instrument { margin-top: 0.75rem; font-size: 1.2rem; color: var(--muted); }
 .profile-photo img, .profile-photo .monogram { width: 100%; aspect-ratio: 1; object-fit: cover; }
 .tracks { margin-top: 3rem; }
 .tracks li + li { margin-top: 1.25rem; }

@@ -1,0 +1,25 @@
+---
+import { url } from '../lib/url';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Monogram from './Monogram.astro';
+
+interface Props {
+  f: CollectionEntry<'faculty'>;
+  /** Short company name for the co-owner tag, e.g. "BDI Enterprises". */
+  company: string;
+}
+const { f, company } = Astro.props;
+const d = f.data;
+---
+<a href={url(`/faculty/${f.id}/`)} class="faculty-card">
+  <div class="faculty-photo">
+    {d.headshot
+      ? <Image src={d.headshot} alt={d.headshotAlt} widths={[400, 800]} sizes="(min-width: 900px) 33vw, (min-width: 560px) 50vw, 100vw" />
+      : <Monogram name={d.name} />}
+  </div>
+  <p class="label">{d.role}</p>
+  <h2>{d.name}</h2>
+  {d.instrument && <p class="instrument">{d.instrument}</p>}
+  {d.owner && <p class="owner-tag">Co-owner, {company}</p>}
+</a>

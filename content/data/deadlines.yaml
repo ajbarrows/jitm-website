@@ -4,20 +4,20 @@
 # TODO: these are the 2026 dates. Confirm for 2027.
 
 - id: application
-  date: March 1
+  date: December 31
   item: Online applications due
 - id: audition
-  date: March 16
+  date: January 10
   item: Video auditions due
 - id: placement
-  date: April 1
-  item: Acceptance, band placement and program outline sent
+  date: February 10
+  item: Acceptance and ensemble placement
 - id: commitment
-  date: April 20
+  date: February 21
   item: Commitment to attend and room-type request due
 - id: payment
-  date: May 1
-  item: Full camp fee due; reservations finalized
+  date: March 1
+  item: Full camp fee due
 - id: music
   date: July 1
   item: Ensemble music sent

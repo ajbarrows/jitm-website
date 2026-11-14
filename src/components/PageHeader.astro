@@ -8,16 +8,20 @@ interface Props {
   lede?: string;
   image?: ImageMetadata;
   imageAlt?: string;
+  /** Short photo strip behind the site header only; the page shows its own title below. */
+  strip?: boolean;
 }
-const { eyebrow, title, lede, image, imageAlt = '' } = Astro.props;
+const { eyebrow, title, lede, image, imageAlt = '', strip = false } = Astro.props;
 ---
-<section class="banner">
-  {image && <Image src={image} alt={imageAlt} class="banner-img" widths={[800, 1100]} sizes="100vw" loading="eager" fetchpriority="high" />}
+<section class:list={['banner', { 'banner-strip': strip }]} aria-label={strip ? title : undefined}>
+  {image && <Image src={image} alt={imageAlt} class="banner-img" widths={[800, 1400, 2000]} sizes="100vw" loading="eager" fetchpriority="high" />}
   <div class="banner-shade"></div>
-  <div class="container banner-content">
-    {eyebrow && <p class="label label-light">{eyebrow}</p>}
-    <h1>{title}</h1>
-    {lede && <p class="banner-lede">{lede}</p>}
-    <slot />
-  </div>
+  {!strip && (
+    <div class="container banner-content">
+      {eyebrow && <p class="label label-light">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {lede && <p class="banner-lede">{lede}</p>}
+      <slot />
+    </div>
+  )}
 </section>

@@ -1,23 +1,39 @@
-# Camp fees. Prices are whole dollars, in the same order as `columns`.
-# TODO: these are the 2026 prices. Confirm for 2027.
+# Camp fees for the week. Prices are whole dollars.
 
-columns:
-  - label: Shared with another camper
-    note: per camper
-  - label: Single room
-    note: per camper
-  - label: Shared with a non-camper partner
-    note: per room
+# Column headings for the room table on the Apply page.
+labels:
+  single: { label: Single room, note: one camper }
+  shared: { label: Shared with another camper, note: per camper }
 
+# Room types, in display order.
+#   single: one camper alone in the room
+#   shared: price for EACH of two campers sharing the room
 rooms:
-  - room: 2 Queens
-    prices: [2270, 2780, 3476]
   - room: 1 King
-    prices: [2300, 2827, 3523]
+    single: 3150
+    shared: 2565
+  - room: 2 Queens
+    single: 3095
+    shared: 2535
   - room: Studio with Murphy queen and kitchenette
-    prices: [2260, 2739, 3435]
+    single: 2995
+    shared: 2485
   - room: Queen suite with Murphy queen and kitchenette
-    prices: [2380, 3014, 3710]
+    single: 3345
+    shared: 2660
+
+# A camper who doesn't stay at the hotel. Set `draft: true` to hide it (or delete the block).
+commuter:
+  label: Commuter
+  note: Includes dinners # TODO: confirm what commuters get (dinners? breakfasts?)
+  price: 1815
+  draft: true
+
+# A partner or spouse who isn't a camper, sharing a camper's room.
+# Added to the camper's single-room price, whatever the room type. `draft: true` hides it.
+partner:
+  price: 820
+  note: "Includes breakfasts and dinners, hors d'oeuvres, and attendence to evening performances." # TODO: say what the partner gets (e.g. breakfasts and dinners); shown under the price
 
 included: Your room, breakfasts and dinners, hors d'oeuvres, tuition and camp amenities for the whole week.
 notIncluded: Travel, lunches, extra nights, private lessons, gratuities and incidentals.
