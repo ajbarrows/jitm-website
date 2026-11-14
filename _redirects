@@ -1,0 +1,12 @@
+# Old Weebly URLs -> new pages (Netlify and Cloudflare Pages format)
+/about.html                 /                      301
+/staff.html                 /faculty/              301
+/Staff.html                 /faculty/              301
+/previous-years.html        /                      301
+/jazz-immersion.html        /earn-college-credit/  301
+/scholarship.html           /scholarships/         301
+/apply.html                 /apply/                301
+/videorequirements.html     /apply/#audition       301
+/resources.html             /                      301
+/contact.html               /contact/              301
+/store/*                    /scholarships/         301
