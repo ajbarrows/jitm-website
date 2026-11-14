@@ -33,7 +33,7 @@ commuter:
 # Added to the camper's single-room price, whatever the room type. `draft: true` hides it.
 partner:
   price: 820
-  note: "Includes breakfasts and dinners, hors d'oeuvres, and attendence to evening performances." # TODO: say what the partner gets (e.g. breakfasts and dinners); shown under the price
+  note: "Includes breakfasts and dinners, hors d'oeuvres, and attendance to evening performances." # TODO: say what the partner gets (e.g. breakfasts and dinners); shown under the price
 
 included: Your room, breakfasts and dinners, hors d'oeuvres, tuition and camp amenities for the whole week.
 notIncluded: Travel, lunches, extra nights, private lessons, gratuities and incidentals.
