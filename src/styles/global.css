@@ -156,7 +156,8 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 @media (max-width: 700px) {
   .header-inner { flex-direction: column; gap: 0.9rem; padding-top: 1rem; }
   .brand img { width: 104px; }
-  .site-header nav ul { gap: 0.95rem; }
+  .site-header nav ul { flex-wrap: wrap; justify-content: center; gap: 0.6rem 0.95rem; }
+  .site-header nav a { white-space: nowrap; }
   .site-header nav a:not(.btn) { font-size: 0.68rem; letter-spacing: 0.1em; }
   .site-header .btn-small { padding: 0.75em 1em; letter-spacing: 0.1em; font-size: 0.68rem; }
 }

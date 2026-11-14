@@ -5,7 +5,14 @@ course: Jazz Immersion
 
 contact:
   name: Glendon Ingalls
-  email: glendoningalls@gmail.com # TODO: confirm, or use admin@jazzinthemountains.com
+  email: ensembles@jazzinthemountains.com
+
+# draft: true hides the registration links below and shows draftMessage instead.
+#   Set it to false once this year's links are ready.
+# draftMessage: optional. Leave it out to use the default,
+#   "Registration details for this year's course will be posted here soon."
+draft: true
+# draftMessage: Registration for {{camp.year}} opens in the spring.
 
 # Registration links shown as buttons. Leave href as "" to hide one.
 # TODO: the old links were broken; get working 2027 links.

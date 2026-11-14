@@ -85,6 +85,9 @@ const collegeCredit = defineCollection({
     course: z.string(),
     contact: z.object({ name: z.string(), email: z.email() }),
     links: z.array(z.object({ label: z.string(), href: optionalUrl })),
+    /** true: hide the registration links and show `draftMessage` instead. */
+    draft: z.boolean().default(false),
+    draftMessage: z.string().default("Registration details for this year's course will be posted here soon."),
   }),
 });
 
