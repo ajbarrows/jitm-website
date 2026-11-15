@@ -15,7 +15,7 @@ draft: true
 # draftMessage: Registration for {{camp.year}} opens in the spring.
 
 # Registration links shown as buttons. Leave href as "" to hide one.
-# TODO: the old links were broken; get working 2027 links.
+# TODO: update for 2027
 links:
   - label: Course registration
     href: "" # was https://vtsucenterforschools.forms-db.com/view.php?id=170779

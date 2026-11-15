@@ -51,15 +51,12 @@
   name: Richard Miller
   spots: [faculty]
 
-# TODO: last name needed. Probably Andy Tompkins (above); if so,
-# change the name and set draft to false. (Either way it would display as "Andy T.")
 - quote: "Every staff member I met was wonderful. Knowledgeable, patient, supportive, non-judgmental. They could've easily been brutal, given the quality of musician most of them work with regularly."
   name: Andy Tompkins.
   spots: [faculty]
-  draft: true
 
 # --- Earn College Credit: for music educators ---------------------------
 
-- quote: "I always feel so invigorated with respect to my own playing and my own teaching when I start back to school a few weeks after."
+- quote: "As a music teacher, I always feel fulfilled and reinvigorated not only about my own playing but I always gain new ideas, repertoire choices, and musical concepts to take back with me to my school after camp."
   name: Matt Pisarcik
   spots: [credit]

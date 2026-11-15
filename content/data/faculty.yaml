@@ -9,8 +9,7 @@
 # bio: Markdown is allowed (**bold**, [links](https://…)).
 #      For more than one paragraph, start with `bio: |-` (not `>-`) and leave a
 #      blank line between paragraphs. End a line with \ to force a line break.
-# TODO: confirm the 2027 roster, add MP3s, and have each person approve their bio.
-#       Still need headshots for Daniel Ian Smith and Peter BarenBregge.
+
 
 - id: daniel-ian-smith
   name: Daniel Ian Smith
@@ -22,7 +21,6 @@
   links:
     - label: Website
       href: https://danieliansmith.com/
-  # TODO: confirm he is the 2027 guest artist
   bio: >-
     Daniel Ian Smith is a saxophonist, flutist, composer and educator who has
     taught at Berklee College of Music in Boston for nearly 30 years. In 1992 he
@@ -33,7 +31,7 @@
 
 - id: ray-vega
   name: Ray Vega
-  role: "" # TODO: role at camp (e.g. Guest Artist or Staff Musician), then set draft to false
+  role: "" 
   instrument: Trumpet and percussion
   headshot: ../images/faculty/ray-vega.jpg
   headshotAlt: Ray Vega playing, in profile
@@ -178,7 +176,6 @@
   headshotAlt: Austin McMahon playing drums in a studio
   tracks: []
   links: []
-  # TODO: bio is short; ask for a fuller one
   bio: >-
     Austin McMahon is a Boston-based jazz drummer who performs regularly with
     saxophonist Jerry Bergonzi and has toured widely.
@@ -245,7 +242,5 @@
   headshotAlt: Jared Johnson playing electric bass
   tracks: []
   links: []
-  # TODO: no bio yet; request one.
-  # Note: on the current staff page, his anchor link points to #ColinFodaski by mistake
   bio: ""
   draft: True

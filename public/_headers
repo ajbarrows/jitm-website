@@ -1,0 +1,7 @@
+# Response headers for Cloudflare Pages.
+
+# Keep the project's own *.pages.dev address out of search engines, so only
+# www.jazzinthemountains.com is indexed. (Branch previews are already hidden
+# by Cloudflare.)
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex

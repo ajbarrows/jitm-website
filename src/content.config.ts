@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { existsSync } from 'node:fs';
 import { parse } from 'yaml';
 
 // Editable content lives in /content:
@@ -45,6 +46,7 @@ const fees = defineCollection({
       shared: z.object({ label: z.string(), note: z.string() }),
     }),
     rooms: z.array(z.object({ room: z.string(), single: z.number(), shared: z.number() })),
+    roomsNote: z.string().optional(),
     commuter: z.object({ label: z.string(), note: z.string().default(''), price: z.number(), draft: z.boolean().default(false) }).optional(),
     partner: z.object({ price: z.number(), note: z.string().default(''), draft: z.boolean().default(false) }).optional(),
     included: z.string(),
@@ -64,11 +66,19 @@ const audition = defineCollection({
 });
 
 const optionalUrl = z.union([z.literal(''), z.url()]).default('');
+/** A file in /public, given as a root-relative path like /files/x.pdf, or '' for none. */
+const optionalPublicFile = z
+  .union([
+    z.literal(''),
+    z.string().startsWith('/').refine((p) => existsSync(`./public${p}`), { message: 'File not found in public/' }),
+  ])
+  .default('');
 
 const links = defineCollection({
   loader: single('./content/data/links.yaml'),
   schema: z.object({
     forms: z.object({ application: optionalUrl, videoUpload: optionalUrl, scholarship: optionalUrl }),
+    atAGlance: optionalPublicFile,
     auditionMusic: optionalUrl,
     donate: optionalUrl,
     featureVideo: z.string(),
@@ -153,6 +163,7 @@ const pages = defineCollection({
         body: z.string(),
         button: link.optional(),
       })).optional(),
+      scholarshipNote: z.string().optional(),
       // Contact
       venuePhoto: image().optional(),
       venuePhotoAlt: z.string().optional(),

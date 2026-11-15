@@ -37,6 +37,11 @@ const gridQuotes = moreQuotes.slice(0, 3);
       <div><p class="label">Who</p><p class="fact-value">{camp.audience}</p></div>
       <div><p class="label">Apply by</p><p class="fact-value">{deadlines[0]?.date}</p></div>
     </div>
+    {links.atAGlance && (
+      <p class="container facts-download">
+        <a href={url(links.atAGlance)} class="text-link">Download the {camp.year} camp at a glance (PDF) →</a>
+      </p>
+    )}
   </section>
 
   <section class="section">

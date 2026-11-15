@@ -5,17 +5,17 @@ import logo from '../../content/images/logo.png';
 
 const nav = [
   { href: '/faculty/', label: 'Faculty' },
-  { href: '/scholarships/', label: 'Scholarships' },
   { href: '/earn-college-credit/', label: 'College credit' },
   { href: '/contact/', label: 'Contact' },
 ];
 const path = Astro.url.pathname;
 const current = (href: string) => path.startsWith(url(href));
+const isHome = path === url('/') || path === url('/').replace(/\/$/, '');
 ---
-<header class="site-header">
+<header class:list={['site-header', { 'site-header-home': isHome }]}>
   <div class="header-inner">
     <a href={url('/')} class="brand" aria-label="Jazz in the Mountains, home">
-      <Image src={logo} alt="" width={150} densities={[1, 2]} loading="eager" />
+      <Image src={logo} alt="" width={isHome ? 220 : 150} densities={[1, 2]} loading="eager" />
     </a>
     <nav aria-label="Main">
       <ul>

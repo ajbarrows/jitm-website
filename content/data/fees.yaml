@@ -9,23 +9,26 @@ labels:
 #   single: one camper alone in the room
 #   shared: price for EACH of two campers sharing the room
 rooms:
-  - room: 1 King
-    single: 3150
-    shared: 2565
-  - room: 2 Queens
-    single: 3095
-    shared: 2535
   - room: Studio with Murphy queen and kitchenette
     single: 2995
     shared: 2485
-  - room: Queen suite with Murphy queen and kitchenette
+  - room: 2 Queens
+    single: 3095
+    shared: 2535
+  - room: 1 King
+    single: 3150
+    shared: 2565
+  - room: 1 Bedroom Suite (includes additional queen and kitchenette)
     single: 3345
     shared: 2660
+
+# Shown in small print under the room table. Delete the line to hide it.
+roomsNote: Room types are subject to availability.
 
 # A camper who doesn't stay at the hotel. Set `draft: true` to hide it (or delete the block).
 commuter:
   label: Commuter
-  note: Includes dinners # TODO: confirm what commuters get (dinners? breakfasts?)
+  note: Includes dinners
   price: 1815
   draft: true
 
@@ -33,7 +36,7 @@ commuter:
 # Added to the camper's single-room price, whatever the room type. `draft: true` hides it.
 partner:
   price: 820
-  note: "Includes breakfasts and dinners, hors d'oeuvres, and attendance to evening performances." # TODO: say what the partner gets (e.g. breakfasts and dinners); shown under the price
+  note: "Includes breakfasts and dinners, hors d'oeuvres, and attendance to evening performances."
 
 included: Your room, breakfasts and dinners, hors d'oeuvres, tuition and camp amenities for the whole week.
 notIncluded: Travel, lunches, extra nights, private lessons, gratuities and incidentals.

@@ -143,6 +143,7 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
   width: min(100% - 2 * var(--gutter), 1400px); margin-inline: auto; padding-block: 1.25rem;
 }
 .brand img { width: 128px; height: auto; filter: drop-shadow(0 2px 10px rgb(0 0 0 / 35%)); }
+.site-header-home .brand img { width: 200px; }
 .site-header nav ul { display: flex; align-items: center; gap: clamp(1rem, 2.6vw, 2.5rem); list-style: none; margin: 0; padding: 0; }
 .site-header nav a:not(.btn) {
   color: #fff; text-decoration: none;
@@ -156,6 +157,7 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 @media (max-width: 700px) {
   .header-inner { flex-direction: column; gap: 0.9rem; padding-top: 1rem; }
   .brand img { width: 104px; }
+  .site-header-home .brand img { width: 150px; }
   .site-header nav ul { flex-wrap: wrap; justify-content: center; gap: 0.6rem 0.95rem; }
   .site-header nav a { white-space: nowrap; }
   .site-header nav a:not(.btn) { font-size: 0.68rem; letter-spacing: 0.1em; }
@@ -200,6 +202,10 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; }
 .facts-grid > div { padding: 2.25rem 1.25rem; border-left: 1px solid var(--line); }
 .facts-grid > div:first-child { border-left: 0; }
+.facts-download { text-align: center; padding-block: 1.25rem; margin-block: 0; border-top: 1px solid var(--line); }
+.facts-download .text-link { margin-top: 0; }
+.download-note { margin: 2rem 0 0; }
+.download-note span { display: block; margin-top: 0.35rem; font-size: 0.9rem; color: var(--muted); }
 .facts .label { color: var(--teal-deep); margin-bottom: 0.5rem; font-size: 0.72rem; }
 .fact-value { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.35; font-weight: 400; }
 @media (max-width: 860px) {
@@ -364,6 +370,9 @@ td { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric:
   tbody td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.35rem 0; white-space: normal; }
   tbody td::before { content: attr(data-label); font-family: var(--font-body); font-size: 0.85rem; color: var(--muted); }
 }
+.table-note { margin: 1rem 0 0; font-size: 0.9rem; color: var(--muted); }
+.scholarship-note { margin: 1.5rem 0 0; font-family: var(--font-display); font-size: 1.25rem; line-height: 1.5; }
+.scholarship-note a { color: inherit; text-decoration-color: var(--teal); text-underline-offset: 0.2em; }
 .fee-extras { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
 @media (min-width: 761px) { .fee-extras-two { grid-template-columns: 2fr 1fr; } }
 .fee-extra { padding: 1.75rem 2rem; border: 1px solid var(--line); }

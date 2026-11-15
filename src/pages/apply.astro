@@ -1,9 +1,10 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import TestimonialGroup from '../components/TestimonialGroup.astro';
-import { getAudition, getData, getPage, getTestimonials, fill, md, isSet } from '../lib/content';
+import { getAudition, getData, getPage, getTestimonials, fill, md, mdInline, isSet } from '../lib/content';
 
 const data = await getData();
 const { camp, fees, links, deadlines, deadline } = data;
@@ -54,6 +55,12 @@ const commuter = fees.commuter && !fees.commuter.draft ? fees.commuter : undefin
         <dl class="dates">
           {deadlines.map((x) => <div><dt>{x.date}</dt><dd>{x.item}</dd></div>)}
         </dl>
+        {links.atAGlance && (
+          <p class="download-note">
+            <a href={url(links.atAGlance)} class="text-link">Download the {camp.year} camp at a glance (PDF) →</a>
+            <span>Dates, costs, a typical day and the faculty on two printable pages.</span>
+          </p>
+        )}
       </div>
     </div>
   </section>
@@ -82,6 +89,8 @@ const commuter = fees.commuter && !fees.commuter.draft ? fees.commuter : undefin
           </tbody>
         </table>
       </div>
+      {fees.roomsNote && <p class="table-note">{fees.roomsNote}</p>}
+      {d.scholarshipNote && <p class="scholarship-note" set:html={mdInline(d.scholarshipNote, data)} />}
       {(partner || commuter) && (
         <div class:list={['fee-extras', { 'fee-extras-two': partner && commuter }]}>
           {partner && (
@@ -110,7 +119,7 @@ const commuter = fees.commuter && !fees.commuter.draft ? fees.commuter : undefin
 
   <section class="section section-warm" id="audition">
     <div class="container narrow">
-      <SectionTitle label="Video audition" title="Recording your audition" />
+      <SectionTitle label="Video submission" title="Recording your video" />
       <p class="center">Download the sheet music and play-along tracks, then follow the instructions for your instrument.</p>
       <div class="btn-row center">
         {isSet(links.auditionMusic) && <a href={links.auditionMusic} class="btn btn-outline">Sheet music and recordings</a>}

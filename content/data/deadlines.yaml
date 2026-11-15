@@ -1,14 +1,12 @@
 # Key dates, in order. Shown on the Apply page; the first one also appears on
 # the home page and in the "Ready to play?" banner.
 # `id` lets the Apply steps refer to a date (e.g. `deadline: application`).
-# TODO: these are the 2026 dates. Confirm for 2027.
-
 - id: application
   date: December 31
   item: Online applications due
 - id: audition
   date: January 10
-  item: Video auditions due
+  item: Video submissions due
 - id: placement
   date: February 10
   item: Acceptance and ensemble placement

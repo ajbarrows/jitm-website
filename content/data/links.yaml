@@ -5,11 +5,15 @@ forms:
   videoUpload: https://docs.google.com/forms/d/e/1FAIpQLSf41e6FErKk2M0K9k_hEDKqEpc6H6jJ6yhtl1tFiVglr1wcRg/viewform?usp=sharing&ouid=108550171788192432558
   scholarship: "" # TODO: form not yet created
 
+# Two-page "At a Glance" PDF, linked from the home and Apply pages. Put the file in
+# public/files/ and give its path starting with /files/. Leave "" to hide the links.
+atAGlance: /files/jitm-at-a-glance-2027.pdf
+
 auditionMusic: https://drive.google.com/drive/folders/1o3nSfi2ygFr-C3Njyme4G71GJ9yr1GSM?usp=sharing
 donate: "" # TODO: Stripe link not yet created
 
 # YouTube video ID for the home page feature (the part after "v=" or "youtu.be/").
-featureVideo: 3iuV-SafdaE # TODO: confirm or replace with a re-edit
+featureVideo: 3iuV-SafdaE
 
 venue: https://www.killington.com/plan-your-trip/lodging-vacation-packages/killington-grand-resort-hotel
 directions: https://www.google.com/maps/dir/?api=1&destination=Killington+Grand+Resort+Hotel%2C+Killington%2C+VT

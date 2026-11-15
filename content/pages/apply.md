@@ -1,9 +1,9 @@
 ---
 title: Apply
-description: Costs, deadlines, eligibility and video audition instructions for Jazz in the Mountains, an adult jazz camp in {{camp.town}}.
+description: Costs, deadlines, eligibility and video submission instructions for Jazz in the Mountains, an adult jazz camp in {{camp.town}}.
 banner: ../images/photos/2025-trumpet-solo.jpg
 bannerAlt: A trumpeter plays during rehearsal
-intro: Applying takes two steps, an online application and a video audition. Placement decisions go out by {{deadline.placement}}.
+intro: Applying takes two steps, an online application and a video submission. Placement decisions go out by {{deadline.placement}}.
 # Eligibility rules, dates, fees and links come from content/data/.
 # `deadline` is an id from content/data/deadlines.yaml.
 steps:
@@ -11,13 +11,13 @@ steps:
     deadline: application
     body: Tell us about yourself, your instrument and your playing experience.
     button: { label: Complete the application, href: "{{links.forms.application}}" }
-  - title: Record and upload your video audition
+  - title: Record and upload your video submission
     deadline: audition
     body: >-
       All new applicants must submit a video, and returning campers are
       encouraged to send a new one. Acceptance and band placement depend on
-      your video, or on the one we already have on file. See the audition
-      instructions below.
+      your video, or on the one we already have on file. See the video
+      submission instructions below.
     button: { label: Upload your video, href: "{{links.forms.videoUpload}}" }
   - title: Get your placement
     deadline: placement
@@ -29,5 +29,9 @@ steps:
       {{deadline.commitment}}, then pay the full camp fee by {{deadline.payment}}.
       Ensemble music goes out by {{deadline.music}}, and any gear rentals must
       be arranged and paid for by {{deadline.gear}}.
-# Video audition instructions live in content/data/audition.yaml.
+# Shown under the fee table, linking to the Scholarships page.
+scholarshipNote: >-
+  We don’t want cost to be what keeps a good musician away. If it’s a barrier
+  for you, [we may be able to help](/scholarships/).
+# Video submission instructions live in content/data/audition.yaml.
 ---
