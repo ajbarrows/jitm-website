@@ -75,7 +75,7 @@ All editable content lives in `content/`, and `content/README.md` explains how t
 | Content | YAML data and Markdown pages in `content/`, validated by schemas in `src/content.config.ts` |
 | Fonts | Fraunces (headings) and Inter (body), self-hosted via Fontsource; no Google Fonts requests |
 | Images | Stored in `content/images/`; Astro resizes them and converts them to WebP at build time |
-| Hosting | Netlify or Cloudflare Pages (free tier), deploying automatically from GitHub |
+| Hosting | Cloudflare Pages (free tier), deploying automatically from GitHub |
 | Redirects | `public/_redirects` (works on both hosts) |
 | Sitemap | Generated at build by `@astrojs/sitemap` |
 
@@ -116,7 +116,24 @@ Navigation has no dropdowns: **Faculty · Scholarships · Contact · Apply** (Ap
 
 **Temporary preview:** `npm run deploy:pages` builds locally and pushes to the `gh-pages` branch, publishing to https://ajbarrows.github.io/jitm-website/. Delete `scripts/deploy-gh-pages.sh` after the move to Cloudflare.
 
-**Production (planned):** Connect the repository to Netlify or Cloudflare Pages; every push to `main` deploys.
+**Production:** Cloudflare Pages, connected to this GitHub repository. Every push to `main` deploys, and every other branch gets its own preview at `<branch>.<project>.pages.dev`.
+
+Cloudflare Pages build settings:
+
+| Setting | Value |
+|---|---|
+| Production branch | `main` |
+| Framework preset | Astro |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Environment variables | None needed. Optionally, `SHOW_DRAFTS=true` for the **Preview** environment only |
+
+The Node version comes from [`.node-version`](.node-version). [`public/_headers`](public/_headers) keeps the `*.pages.dev` address out of search engines.
+
+> **If a Cloudflare build fails at "Installing project dependencies" with `Missing: … from lock file`:** Cloudflare installs with `npm ci`, which is stricter than the npm on a Mac about optional packages for other platforms (here, `@rolldown/binding-wasm32-wasi` and the `@emnapi/*` versions it needs). Running `npm install` locally can quietly drop those lock-file entries again. Either:
+>
+> - **Repair the lock file** before committing: `npx npm@10 install --package-lock-only`, then commit `package-lock.json`. Check with `npx npm@10 ci`.
+> - **Or stop Cloudflare from using `npm ci`:** in the Pages project, add the environment variable `SKIP_DEPENDENCY_INSTALL=true` and change the build command to `npm install && npm run build`. The trade-off is that builds no longer use exactly the versions in the lock file.
 
 **Launch checklist:**
 1. Point the GoDaddy domain at the host, keep the email DNS records for admin@jazzinthemountains.com intact, and confirm HTTPS.
@@ -154,7 +171,7 @@ Old Weebly URLs are redirected in `public/_redirects`:
 1. ~~**Scaffold:** Astro project, content schemas, layout, design system and all pages.~~ Done (draft)
 2. ~~**Version control:** GitHub repository with a temporary GitHub Pages preview (see [Deployment](#deployment)).~~ Done
 3. ~~**Content:** Fill the `TODO`s, add photos, headshots and MP3s, and review copy.~~ Done
-4. **Host:** Connect to Netlify or Cloudflare Pages and check the preview URL.
+4. ~~**Host:** Connect to Cloudflare Pages and check the preview URL.~~ Done
 5. **Test:** Mobile layouts, all links and forms, a live Stripe donation, page titles and descriptions, image alt text, and a Lighthouse audit.
 6. **Launch:** Follow the [launch checklist](#deployment).
 7. **Optional:** Add a Git-based CMS for a non-technical administrator (see [Editing content](#editing-content)).
