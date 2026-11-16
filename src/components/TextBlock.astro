@@ -1,0 +1,42 @@
+---
+// A titled block of Markdown from a page's settings. With an image, it's a
+// half-photo, half-text band (`reverse` puts the photo on the right); without
+// one, a centered column. An optional camper quote (looked up by name) follows.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import SectionTitle from './SectionTitle.astro';
+import Testimonial from './Testimonial.astro';
+import { getData, getTestimonialByName, md } from '../lib/content';
+
+interface Props {
+  block: { title: string; body: string; image?: ImageMetadata; imageAlt?: string; testimonial?: string };
+  id?: string;
+  reverse?: boolean;
+  /** Background: warm (default for photo bands) or plain white. */
+  tone?: 'warm' | 'plain';
+}
+const { block, id, reverse = false, tone } = Astro.props;
+const data = await getData();
+const quote = block.testimonial ? await getTestimonialByName(block.testimonial) : undefined;
+const warm = (tone ?? (block.image ? 'warm' : 'plain')) === 'warm';
+---
+{block.image ? (
+  <section id={id} class:list={['split-media', { 'split-media-reverse': reverse, 'split-media-plain': !warm }]}>
+    <Image src={block.image} alt={block.imageAlt ?? ''} widths={[700, 1100, 1600]} sizes="(min-width: 900px) 50vw, 100vw" />
+    <div class="split-media-body">
+      <SectionTitle label={block.title} align="left" />
+      <div class="prose prose-large" set:html={md(block.body, data)} />
+      <slot />
+      {quote && <Testimonial t={quote} />}
+    </div>
+  </section>
+) : (
+  <section id={id} class:list={['section', { 'section-warm': warm }]}>
+    <div class="container narrow">
+      <SectionTitle label={block.title} />
+      <div class="prose prose-large" set:html={md(block.body, data)} />
+      <slot />
+      {quote && <Testimonial t={quote} />}
+    </div>
+  </section>
+)}

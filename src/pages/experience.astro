@@ -1,0 +1,60 @@
+---
+import { url } from '../lib/url';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import NumberedGrid from '../components/NumberedGrid.astro';
+import TextBlock from '../components/TextBlock.astro';
+import { getData, getPage, fill, md } from '../lib/content';
+
+const data = await getData();
+const page = await getPage('experience');
+const d = page.data;
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)} cta={false}>
+  <PageHeader eyebrow={`${data.camp.dates} · ${data.camp.town}`} title={fill(d.title, data)} lede={d.intro && fill(d.intro, data)} image={d.banner} imageAlt={d.bannerAlt} />
+
+  <section class="section">
+    <div class="container narrow center">
+      <div class="prose prose-large" set:html={md(page.body, data)} />
+    </div>
+  </section>
+
+  {d.setting && <TextBlock block={d.setting} />}
+  {d.venue && <TextBlock block={d.venue} reverse />}
+
+  {(d.week || d.day) && (
+    <section class="section">
+      <div class="container split-even">
+        {[d.week, d.day].map((t) => t && (
+          <div>
+            <SectionTitle label={t.title} align="left" />
+            <dl class="dates dates-wide">
+              {t.items.map((x) => <div><dt>{fill(x.when, data)}</dt><dd>{fill(x.what, data)}</dd></div>)}
+            </dl>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {d.ensembles && <NumberedGrid grid={d.ensembles} warm />}
+
+  {d.table && <TextBlock block={d.table} tone="plain" />}
+
+  {d.partners && (
+    <TextBlock block={d.partners} id="partners" tone="warm">
+      {d.partners.list.length > 0 && <ul class="checklist experience-list">{d.partners.list.map((item) => <li>{item}</li>)}</ul>}
+      {d.partners.closing && <div class="prose prose-large experience-closing" set:html={md(d.partners.closing, data)} />}
+    </TextBlock>
+  )}
+
+  {d.takeHome && (
+    <TextBlock block={d.takeHome}>
+      <div class="btn-row center">
+        <a href={url('/apply/')} class="btn btn-dark">Apply for {data.camp.year}</a>
+      </div>
+      <p class="center experience-faq"><a href={url('/faq/')} class="text-link">Questions? See the FAQ →</a></p>
+    </TextBlock>
+  )}
+</Base>

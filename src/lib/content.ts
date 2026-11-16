@@ -12,9 +12,15 @@ function required<T>(entry: { data: T } | undefined, name: string): T {
   return entry.data;
 }
 
+/** "2027-08-08" -> "Sunday, August 8" */
+const longDay = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
 /** Everything in content/data/, in one object. */
 export async function getData() {
-  const camp = required(await getEntry('camp', 'main'), 'camp');
+  const campData = required(await getEntry('camp', 'main'), 'camp');
+  if (campData.end < campData.start) throw new Error('camp.yaml: `end` is before `start`.');
+  const camp = { ...campData, arrival: longDay(campData.start), departure: longDay(campData.end) };
   const fees = required(await getEntry('fees', 'main'), 'fees');
   const links = required(await getEntry('links', 'main'), 'links');
   const collegeCredit = required(await getEntry('collegeCredit', 'main'), 'collegeCredit');
@@ -47,6 +53,19 @@ export async function getFaculty(): Promise<CollectionEntry<'faculty'>[]> {
 const showDrafts = import.meta.env.DEV || process.env.SHOW_DRAFTS === 'true';
 
 export type Spot = 'home' | 'apply' | 'faculty' | 'scholarships' | 'credit';
+
+/**
+ * One testimonial, looked up by the person's full name as written in
+ * testimonials.yaml. Stops the build if the name matches none, or more than one.
+ */
+export async function getTestimonialByName(name: string) {
+  const all = await getCollection('testimonials', ({ data }) => showDrafts || !data.draft);
+  const matches = all.filter((t) => t.data.name.trim() === name.trim());
+  if (matches.length !== 1) {
+    throw new Error(`Expected one testimonial from "${name}" in content/data/testimonials.yaml, found ${matches.length}.`);
+  }
+  return matches[0].data;
+}
 
 /**
  * Testimonials for a spot (or a faculty profile), in file order.

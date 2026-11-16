@@ -406,6 +406,13 @@ td { font-family: var(--font-display); font-size: 1.25rem; font-variant-numeric:
 .accordion summary:hover { color: var(--teal-deep); }
 .accordion details > .prose { padding: 0 0 1.75rem; color: var(--text); }
 
+/* FAQ: same accordion, answers may end with a camper quote */
+.accordion.faq { margin: 0; }
+.faq-answer { padding: 0 0 1.75rem; }
+.faq .testimonial-inline { margin: 1.75rem 0 0; padding-top: 1.5rem; text-align: left; }
+.faq .testimonial-inline p { font-size: 1.2rem; }
+.faq .testimonial-inline figcaption { align-items: flex-start; }
+
 /* ---------- Faculty ---------- */
 
 .faculty-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 3.5rem 2rem; grid-template-columns: repeat(3, 1fr); }
@@ -486,7 +493,19 @@ audio { width: 100%; max-width: 480px; }
 @media (min-width: 900px) {
   .split-media { grid-template-columns: 1fr 1fr; }
   .split-media-body { padding-inline: clamp(3rem, 6vw, 6rem); }
+  .split-media-reverse img { order: 2; }
 }
+.split-media-plain { background: none; }
+.split-media .testimonial-inline { margin: 2.5rem 0 0; padding-top: 2rem; text-align: left; }
+.split-media .testimonial-inline figcaption { align-items: flex-start; }
+
+/* Experience page */
+.dates-wide > div { grid-template-columns: 11rem 1fr; }
+@media (max-width: 540px) { .dates-wide > div { grid-template-columns: 1fr; gap: 0.25rem; } }
+.experience-list { margin-top: 1.5rem; }
+.experience-closing { margin-top: 1.5rem; }
+.experience-faq { margin-top: 1.25rem; }
+.home-more { margin-top: 2rem; }
 
 /* ---------- Footer ---------- */
 

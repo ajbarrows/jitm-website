@@ -88,17 +88,19 @@ All editable content lives in `content/`, and `content/README.md` explains how t
 
 ## Site map
 
-Navigation has no dropdowns: **Faculty · Scholarships · Contact · Apply** (Apply is a button)
+Navigation has no dropdowns: **Experience · Faculty · College credit · FAQ · Contact · Apply** (Apply is a button). Scholarships is linked from the Apply page, the home page and the footer.
 
 | Page | Source | Sections |
 |---|---|---|
 | **Home** `/` | `content/pages/home.md` | Hero photo with headline, dates and buttons; at-a-glance strip; about; photo mosaic; values; feature video; who should apply; testimonials (shown once added) |
 | **Apply** `/apply/` | `content/pages/apply.md` | Eligibility; key dates; four application steps; fee table; included and not included; video audition accordion; questions banner |
+| **The Experience** `/experience/` | `content/pages/experience.md` | Intro; setting and venue (photo bands); your week and a typical day; what you'll play in (numbered grid); meals and after hours; partners and spouses (`#partners`); what campers take home, with Apply and FAQ links |
 | **Faculty** `/faculty/` | `content/pages/faculty.md`, `content/data/faculty.yaml` | Grid of horizontal headshots (initials shown until a photo is added), each linking to a detail page |
 | **Faculty detail** `/faculty/<id>/` | `content/data/faculty.yaml` | Photo, role, instrument, bio, audio tracks, links |
 | **Scholarships** `/scholarships/` | `content/pages/scholarships.md` | Mission text; scholarship application; donate to the fund through Stripe |
 | **Contact** `/contact/` | `content/pages/contact.md` | Email, phone and mail cards; venue photo with directions and hotel buttons. **No contact form** |
-| **Earn College Credit** `/earn-college-credit/` | `content/pages/earn-college-credit.md` | Jazz Immersion info and registration links; linked from the footer only |
+| **Earn College Credit** `/earn-college-credit/` | `content/pages/earn-college-credit.md` | Jazz Immersion info and registration links |
+| **FAQ** `/faq/` | `content/pages/faq.md` | Questions grouped into sections, as accordions; an answer can show a camper quote from `testimonials.yaml` |
 | **404** | `src/pages/404.astro` | "Wrong note" page with links home and to Apply |
 
 **Footer (shared):** camp dates and venue, Apply Now, Support Our Mission (once the Stripe link exists), contact info, page links including Earn College Credit, YouTube, Facebook, the Killington Resort link, and a Google review link once the Business Profile exists.
@@ -117,6 +119,22 @@ Navigation has no dropdowns: **Faculty · Scholarships · Contact · Apply** (Ap
 **Temporary preview:** `npm run deploy:pages` builds locally and pushes to the `gh-pages` branch, publishing to https://ajbarrows.github.io/jitm-website/. Delete `scripts/deploy-gh-pages.sh` after the move to Cloudflare.
 
 **Production:** Cloudflare Pages, connected to this GitHub repository. Every push to `main` deploys, and every other branch gets its own preview at `<branch>.<project>.pages.dev`.
+
+```
+branch ──push──▶ Cloudflare builds ──▶ <branch>.<project>.pages.dev   (preview)
+   │
+   └──PR──▶ review, more pushes update the preview
+              │
+              └──merge into main ──▶ Cloudflare builds ──▶ <project>.pages.dev
+                                                          └─▶ www.jazzinthemountains.com
+                                                              (once the domain is connected)
+```
+
+- **Cloudflare reacts to pushes, not PRs.** Any push to any branch builds a preview. The PR is where GitHub shows it: a check with the preview link, or a red ✗ if the build failed.
+- **Merging into `main` updates the live site** within a minute or two.
+- **Pushing straight to `main` also deploys immediately.** Branch and PR is a convention for getting a preview first. GitHub's branch protection rules can enforce it if needed.
+
+Step-by-step instructions for editors are in [content/README.md](content/README.md#publishing-a-change).
 
 Cloudflare Pages build settings:
 
@@ -188,6 +206,9 @@ Old Weebly URLs are redirected in `public/_redirects`:
 
 #### small tasks
 
+
+
+
 - [x] increase size of Jazz in the Mountains logo on home page
 - [x] substitute the phrase "video submission" for "audition" or "video audition" throughout
 - [x] make links to external pages/documents open in new tabs
@@ -201,3 +222,10 @@ Old Weebly URLs are redirected in `public/_redirects`:
 
 
 
+- [x] replace "what we value" grid with new sugestions
+  - [x] move "what we value" grid from home page to faculty page
+  - [x] update blurb
+  - [x] update grid
+  - [x] add "who's it for"
+- [x] add FAQ page
+- [x] add "the experience" page

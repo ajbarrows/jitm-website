@@ -12,6 +12,8 @@
 #             scholarships  Scholarships page, after "Our commitment" (up to two)
 #             credit        Earn College Credit page (up to two)
 #           Order in this file decides which come first.
+#           The FAQ page can also show a quote under an answer; see
+#           content/pages/faq.md (`testimonial:`, by full name).
 # faculty:  optional faculty id (from faculty.yaml); also shows the quote on
 #           that person's profile page
 # draft:    true = only visible in `npm run dev`, never on the live site

@@ -2,6 +2,10 @@
 
 year: 2027
 dates: August 8–13, 2027
+# First and last day (YYYY-MM-DD). Pages show them as "Sunday, August 8" via
+# {{camp.arrival}} and {{camp.departure}}. Keep in step with `dates` above.
+start: "2027-08-08"
+end: "2027-08-13"
 
 venue: Killington Grand Resort Hotel
 town: Killington, Vermont

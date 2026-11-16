@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import Testimonial from '../components/Testimonial.astro';
+import NumberedGrid from '../components/NumberedGrid.astro';
 import { getData, getPage, getTestimonials, fill, md, mdInline } from '../lib/content';
 
 const data = await getData();
@@ -48,6 +49,7 @@ const gridQuotes = moreQuotes.slice(0, 3);
     <div class="container narrow center">
       <SectionTitle label="The camp" title={d.aboutHeading} />
       <div class="prose prose-large" set:html={md(page.body, data)} />
+      <a href={url('/experience/')} class="text-link home-more">See what the week looks like →</a>
     </div>
   </section>
 
@@ -57,19 +59,21 @@ const gridQuotes = moreQuotes.slice(0, 3);
     </section>
   )}
 
-  {d.values && (
-    <section class="section">
-      <div class="container">
-        <SectionTitle label="What we value" title="Built around the music and the people" />
-        <ol class="values">
-          {d.values.map((v) => <li><h3>{v.title}</h3><p>{fill(v.text, data)}</p></li>)}
-        </ol>
+  {d.highlights && <NumberedGrid grid={d.highlights} />}
+
+  <section class="section section-warm">
+    <div class="container narrow center">
+      <SectionTitle label={d.whoHeading ?? 'Who should apply'} />
+      <p class="statement" set:html={mdInline(d.who, data)} />
+      <div class="btn-row center">
+        <a href={url('/apply/')} class="btn btn-dark">How to apply</a>
+        <a href={url('/scholarships/')} class="btn btn-outline">Scholarships</a>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
   {featured && (
-    <section class="section section-warm">
+    <section class="section">
       <div class="container narrow"><Testimonial t={featured} variant="feature" /></div>
     </section>
   )}
@@ -85,17 +89,6 @@ const gridQuotes = moreQuotes.slice(0, 3);
       </span>
     </a>
   )}
-
-  <section class="section section-warm">
-    <div class="container narrow center">
-      <SectionTitle label={d.whoHeading ?? 'Who should apply'} />
-      <p class="statement" set:html={mdInline(d.who, data)} />
-      <div class="btn-row center">
-        <a href={url('/apply/')} class="btn btn-dark">How to apply</a>
-        <a href={url('/scholarships/')} class="btn btn-outline">Scholarships</a>
-      </div>
-    </div>
-  </section>
 
   {gridQuotes.length > 0 && (
     <section class="section">

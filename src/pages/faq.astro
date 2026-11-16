@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Testimonial from '../components/Testimonial.astro';
+import { getData, getPage, getTestimonialByName, fill, md } from '../lib/content';
+
+const data = await getData();
+const { data: d } = await getPage('faq');
+
+// Look up quotes up front, so a misspelled name stops the build.
+const sections = await Promise.all(
+  (d.sections ?? []).map(async (s) => ({
+    ...s,
+    questions: await Promise.all(
+      s.questions.map(async (q) => ({ ...q, quote: q.testimonial ? await getTestimonialByName(q.testimonial) : undefined })),
+    ),
+  })),
+);
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)}>
+  <PageHeader eyebrow="Questions and answers" title={fill(d.title, data)} lede={d.intro && fill(d.intro, data)} image={d.banner} imageAlt={d.bannerAlt} />
+
+  {sections.map((s, i) => (
+    <section class:list={['section', { 'section-warm': i % 2 === 1 }]}>
+      <div class="container narrow">
+        <SectionTitle label={s.title} />
+        <div class="accordion faq">
+          {s.questions.map((q) => (
+            <details>
+              <summary>{q.q}</summary>
+              <div class="faq-answer">
+                <div class="prose" set:html={md(q.a, data)} />
+                {q.quote && <Testimonial t={q.quote} />}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+</Base>
