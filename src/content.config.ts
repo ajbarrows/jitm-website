@@ -182,6 +182,7 @@ const pages = defineCollection({
         button: link.optional(),
       })).optional(),
       scholarshipNote: z.string().optional(),
+      creditNote: z.object({ label: z.string(), text: z.string() }).optional(),
       // Experience
       setting: textBlock.optional(),
       venue: textBlock.optional(),

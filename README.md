@@ -88,7 +88,7 @@ All editable content lives in `content/`, and `content/README.md` explains how t
 
 ## Site map
 
-Navigation has no dropdowns: **Experience · Faculty · College credit · FAQ · Contact · Apply** (Apply is a button). Scholarships is linked from the Apply page, the home page and the footer.
+Navigation has no dropdowns: **Experience · Faculty · FAQ · Contact · Apply** (Apply is a button). Scholarships is linked from the Apply page, the home page and the footer. Earn College Credit is linked from the Apply page (under "Who can apply"), the FAQ and the footer.
 
 | Page | Source | Sections |
 |---|---|---|

@@ -49,6 +49,12 @@ const commuter = fees.commuter && !fees.commuter.draft ? fees.commuter : undefin
         <ul class="checklist">
           {camp.eligibility.map((e) => <li>{e}</li>)}
         </ul>
+        {d.creditNote && (
+          <p class="download-note">
+            <a href={url('/earn-college-credit/')} class="text-link">{d.creditNote.label} →</a>
+            <span>{fill(d.creditNote.text, data)}</span>
+          </p>
+        )}
       </div>
       <div>
         <SectionTitle label="Key dates" align="left" />

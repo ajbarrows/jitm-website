@@ -29,6 +29,10 @@ steps:
       {{deadline.commitment}}, then pay the full camp fee by {{deadline.payment}}.
       Ensemble music goes out by {{deadline.music}}, and any gear rentals must
       be arranged and paid for by {{deadline.gear}}.
+# Shown under "Who can apply", pointing music educators to Earn College Credit.
+creditNote:
+  label: Earn college credit
+  text: Music educators can earn graduate or continuing-education credit for the week through the {{collegeCredit.course}} course.
 # Shown under the fee table, linking to the Scholarships page.
 scholarshipNote: >-
   We don’t want cost to be what keeps a good musician away. If it’s a barrier
