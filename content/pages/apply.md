@@ -16,9 +16,9 @@ steps:
     body: >-
       All new applicants must submit a video, and returning campers are
       encouraged to send a new one. Acceptance and band placement depend on
-      your video, or on the one we already have on file. See the video
-      submission instructions below.
-    button: { label: Upload your video, href: "{{links.forms.videoUpload}}" }
+      your video, or on the one we already have on file. The instructions
+      below cover the music to play, how to record it and where to upload it.
+    button: { label: Read the video submission instructions, href: "#audition" }
   - title: Get your placement
     deadline: placement
     body: We'll email you with your acceptance, your band placement and an outline of the week.
@@ -29,6 +29,10 @@ steps:
       {{deadline.commitment}}, then pay the full camp fee by {{deadline.payment}}.
       Ensemble music goes out by {{deadline.music}}, and any gear rentals must
       be arranged and paid for by {{deadline.gear}}.
+# Shown under "Who can apply", pointing music educators to Earn College Credit.
+creditNote:
+  label: Earn college credit
+  text: Music educators can earn graduate or continuing-education credit for the week through the {{collegeCredit.course}} course.
 # Shown under the fee table, linking to the Scholarships page.
 scholarshipNote: >-
   We don’t want cost to be what keeps a good musician away. If it’s a barrier

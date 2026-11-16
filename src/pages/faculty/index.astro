@@ -4,6 +4,7 @@ import PageHeader from '../../components/PageHeader.astro';
 import SectionTitle from '../../components/SectionTitle.astro';
 import FacultyCard from '../../components/FacultyCard.astro';
 import TestimonialGroup from '../../components/TestimonialGroup.astro';
+import NumberedGrid from '../../components/NumberedGrid.astro';
 import { getData, getPage, getFaculty, getTestimonials, fill, md } from '../../lib/content';
 import { companyName, listNames } from '../../lib/faculty';
 
@@ -48,4 +49,6 @@ const company = companyName(data.camp.organization.legalName);
       <TestimonialGroup quotes={quotes} />
     </div>
   </section>
+
+  {page.data.values && <NumberedGrid grid={page.data.values} warm />}
 </Base>

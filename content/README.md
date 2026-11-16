@@ -28,6 +28,7 @@ Page text can include **tokens** in double curly braces, which are replaced with
 | Token | Becomes |
 |---|---|
 | `{{camp.year}}`, `{{camp.dates}}`, `{{camp.venue}}`, `{{camp.town}}` | Values from `camp.yaml` |
+| `{{camp.arrival}}`, `{{camp.departure}}` | First and last day of camp, e.g. "Sunday, August 8" (from `start` and `end` in `camp.yaml`) |
 | `{{camp.contact.email}}` | The contact email |
 | `{{deadline.application}}` | The date of the deadline with that `id` in `deadlines.yaml` |
 | `{{links.forms.application}}` | A link from `links.yaml` |
@@ -37,7 +38,7 @@ If a token is misspelled, the build stops and names the bad token, so mistakes n
 
 ## Common tasks
 
-**New camp year:** update `year` and `dates` in `camp.yaml`, the dates in `deadlines.yaml`, and the prices in `fees.yaml`. Every page picks up the changes.
+**New camp year:** update `year`, `dates`, `start` and `end` in `camp.yaml`, the dates in `deadlines.yaml`, and the prices in `fees.yaml`. Every page picks up the changes.
 
 **Add or update a faculty member:** edit `data/faculty.yaml`. The list order is the display order.
 - `id` becomes the page address (`jane-doe` → `/faculty/jane-doe/`). Use lowercase and hyphens.

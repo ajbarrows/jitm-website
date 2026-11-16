@@ -10,6 +10,12 @@ import { parse } from 'yaml';
 // A Git-based CMS can be pointed at these files later without touching /src.
 
 const link = z.object({ label: z.string(), href: z.string() });
+/** A section label and heading over a numbered grid of short points. */
+const numberedGrid = z.object({
+  label: z.string(),
+  title: z.string().optional(),
+  items: z.array(z.object({ title: z.string(), text: z.string() })),
+});
 /** A heading plus Markdown text. */
 const block = z.object({ title: z.string(), body: z.string() });
 
@@ -24,6 +30,8 @@ const camp = defineCollection({
   schema: z.object({
     year: z.number(),
     dates: z.string(),
+    start: z.iso.date(),
+    end: z.iso.date(),
     venue: z.string(),
     town: z.string(),
     audience: z.string(),
@@ -79,6 +87,7 @@ const links = defineCollection({
   schema: z.object({
     forms: z.object({ application: optionalUrl, videoUpload: optionalUrl, scholarship: optionalUrl }),
     atAGlance: optionalPublicFile,
+    mailingList: optionalUrl, // Mailchimp form action URL, used on /mailing-list/
     auditionMusic: optionalUrl,
     donate: optionalUrl,
     featureVideo: z.string(),
@@ -140,8 +149,18 @@ const faculty = defineCollection({
 
 const pages = defineCollection({
   loader: glob({ pattern: '*.md', base: './content/pages' }),
-  schema: ({ image }) =>
-    z.object({
+  schema: ({ image }) => {
+    /** A titled block of Markdown, optionally with a photo beside it and a quote (by name) below. */
+    const textBlock = z.object({
+      title: z.string(),
+      body: z.string(),
+      image: image().optional(),
+      imageAlt: z.string().optional(),
+      testimonial: z.string().optional(),
+    });
+    /** A titled list of "when / what" rows, e.g. days of the week. */
+    const timeline = z.object({ title: z.string(), items: z.array(z.object({ when: z.string(), what: z.string() })) });
+    return z.object({
       title: z.string(),
       description: z.string().max(170),
       // Photo behind the page title (every page except Home)
@@ -150,7 +169,7 @@ const pages = defineCollection({
       // Home
       hero: z.object({ eyebrow: z.string(), headline: z.string(), image: image(), imageAlt: z.string() }).optional(),
       aboutHeading: z.string().optional(),
-      values: z.array(z.object({ title: z.string(), text: z.string() })).optional(),
+      highlights: numberedGrid.optional(),
       video: z.object({ thumbnail: image(), caption: z.string() }).optional(),
       whoHeading: z.string().optional(),
       who: z.string().optional(),
@@ -164,14 +183,37 @@ const pages = defineCollection({
         button: link.optional(),
       })).optional(),
       scholarshipNote: z.string().optional(),
-      // Contact
+      creditNote: z.object({ label: z.string(), text: z.string() }).optional(),
+      // Experience
+      setting: textBlock.optional(),
+      venue: textBlock.optional(),
+      week: timeline.optional(),
+      day: timeline.optional(),
+      ensembles: numberedGrid.optional(),
+      table: textBlock.optional(),
+      partners: textBlock.extend({ list: z.array(z.string()).default([]), closing: z.string().optional() }).optional(),
+      takeHome: textBlock.optional(),
+      // FAQ
+      sections: z.array(z.object({
+        title: z.string(),
+        questions: z.array(z.object({
+          q: z.string(),
+          a: z.string(),
+          /** Full name of a person in testimonials.yaml; their quote is shown under the answer. */
+          testimonial: z.string().optional(),
+        })),
+      })).optional(),
+      // Faculty
+      values: numberedGrid.optional(),
+      // FAQ ("Where camp is held" photo)
       venuePhoto: image().optional(),
       venuePhotoAlt: z.string().optional(),
       // Scholarships
       headline: z.string().optional(),
       apply: z.string().optional(),
       donate: z.string().optional(),
-    }),
+    });
+  },
 });
 
 export const collections = { camp, deadlines, fees, audition, links, collegeCredit, faculty, testimonials, pages };

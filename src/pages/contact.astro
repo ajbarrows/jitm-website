@@ -1,12 +1,12 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionTitle from '../components/SectionTitle.astro';
+import { url } from '../lib/url';
 import { getData, getPage, fill, md, telHref } from '../lib/content';
 
 const data = await getData();
-const { camp, links } = data;
+const { camp } = data;
 const page = await getPage('contact');
 ---
 <Base title={fill(page.data.title, data)} description={fill(page.data.description, data)} cta={false}>
@@ -29,14 +29,12 @@ const page = await getPage('contact');
       </div>
     </div>
   </section>
-  <section class="split-media">
-    {page.data.venuePhoto && <Image src={page.data.venuePhoto} alt={page.data.venuePhotoAlt ?? ''} widths={[700, 1100, 1600]} sizes="(min-width: 900px) 50vw, 100vw" />}
-    <div class="split-media-body">
-      <SectionTitle label="Where camp is held" title={camp.venue} align="left" />
-      <p class="big-text">{camp.town}</p>
-      <div class="btn-row">
-        <a href={links.directions} class="btn btn-dark">Get directions</a>
-        <a href={links.venue} class="btn btn-outline">About the hotel</a>
+  <section class="section section-warm">
+    <div class="container narrow center">
+      <SectionTitle label="Mailing list" title="Hear from us" />
+      <p class="statement">Get camp news and dates in your inbox, including when applications open.</p>
+      <div class="btn-row center">
+        <a href={url('/mailing-list/')} class="btn btn-dark">Join our mailing list</a>
       </div>
     </div>
   </section>

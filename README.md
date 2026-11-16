@@ -60,7 +60,7 @@ scripts/            Deployment helpers
 
 All editable content lives in `content/`, and `content/README.md` explains how to change it and publish a change. For now, the site owner edits those files directly and pushes to GitHub, which rebuilds the site.
 
-- **Data** lives once in `content/data/`: `camp.yaml` (dates, venue, contact, eligibility), `deadlines.yaml`, `fees.yaml`, `links.yaml` (forms, audition music, donation, video, social), `faculty.yaml`, `college-credit.yaml` and `testimonials.yaml`. Pages read from these, so nothing is typed twice.
+- **Data** lives once in `content/data/`: `camp.yaml` (dates, venue, contact, eligibility), `deadlines.yaml`, `fees.yaml`, `links.yaml` (forms, mailing list, audition music, donation, video, social), `faculty.yaml`, `college-credit.yaml` and `testimonials.yaml`. Pages read from these, so nothing is typed twice.
 - **Page wording** lives in `content/pages/` as Markdown, which can pull in data with `{{tokens}}`.
 - **Empty links** (such as the Stripe link before it exists) are hidden automatically, with a "coming soon" note where it matters.
 - Run `npm run check` after editing to catch schema errors.
@@ -85,23 +85,27 @@ All editable content lives in `content/`, and `content/README.md` explains how t
 - Map: a "Get directions" button that opens Google Maps
 - Accordions: native `<details>` elements
 - Mobile navigation: wraps under the logo; no menu script
+- Mailchimp signup: a plain form that posts to Mailchimp, without Mailchimp's script or stylesheet. Mailchimp shows its own confirmation page in a new tab
 
 ## Site map
 
-Navigation has no dropdowns: **Faculty · Scholarships · Contact · Apply** (Apply is a button)
+Navigation has no dropdowns: **Experience · Faculty · FAQ · Contact · Apply** (Apply is a button). Join Our Mailing List is linked from the footer and the Contact page. Scholarships is linked from the Apply page (under the fees) and the FAQ. Earn College Credit is linked from the Apply page (under "Who can apply") and the FAQ.
 
 | Page | Source | Sections |
 |---|---|---|
 | **Home** `/` | `content/pages/home.md` | Hero photo with headline, dates and buttons; at-a-glance strip; about; photo mosaic; values; feature video; who should apply; testimonials (shown once added) |
 | **Apply** `/apply/` | `content/pages/apply.md` | Eligibility; key dates; four application steps; fee table; included and not included; video audition accordion; questions banner |
+| **The Experience** `/experience/` | `content/pages/experience.md` | Intro; setting and venue (photo bands); your week and a typical day; what you'll play in (numbered grid); meals and after hours; partners and spouses (`#partners`); what campers take home, with Apply and FAQ links |
 | **Faculty** `/faculty/` | `content/pages/faculty.md`, `content/data/faculty.yaml` | Grid of horizontal headshots (initials shown until a photo is added), each linking to a detail page |
 | **Faculty detail** `/faculty/<id>/` | `content/data/faculty.yaml` | Photo, role, instrument, bio, audio tracks, links |
 | **Scholarships** `/scholarships/` | `content/pages/scholarships.md` | Mission text; scholarship application; donate to the fund through Stripe |
-| **Contact** `/contact/` | `content/pages/contact.md` | Email, phone and mail cards; venue photo with directions and hotel buttons. **No contact form** |
-| **Earn College Credit** `/earn-college-credit/` | `content/pages/earn-college-credit.md` | Jazz Immersion info and registration links; linked from the footer only |
+| **Contact** `/contact/` | `content/pages/contact.md` | Email, phone and mail cards; a band linking to the mailing list. **No contact form** |
+| **Earn College Credit** `/earn-college-credit/` | `content/pages/earn-college-credit.md` | Jazz Immersion info and registration links |
+| **FAQ** `/faq/` | `content/pages/faq.md` | Questions grouped into sections, as accordions; an answer can show a camper quote from `testimonials.yaml`; "Where camp is held" venue photo with directions and hotel buttons (`#venue`) |
+| **Mailing list** `/mailing-list/` | `content/pages/mailing-list.md` | Intro; Mailchimp signup form (first and last name, email, optional instrument), posting to `mailingList` in `links.yaml` |
 | **404** | `src/pages/404.astro` | "Wrong note" page with links home and to Apply |
 
-**Footer (shared):** camp dates and venue, Apply Now, Support Our Mission (once the Stripe link exists), contact info, page links including Earn College Credit, YouTube, Facebook, the Killington Resort link, and a Google review link once the Business Profile exists.
+**Footer (shared):** camp dates and venue, Apply Now, Support Our Mission (once the Stripe link exists), contact info, page links (not Scholarships or Earn College Credit), Join our mailing list, YouTube, Facebook, the Killington Resort link, and a Google review link once the Business Profile exists.
 
 ## Design
 
@@ -117,6 +121,22 @@ Navigation has no dropdowns: **Faculty · Scholarships · Contact · Apply** (Ap
 **Temporary preview:** `npm run deploy:pages` builds locally and pushes to the `gh-pages` branch, publishing to https://ajbarrows.github.io/jitm-website/. Delete `scripts/deploy-gh-pages.sh` after the move to Cloudflare.
 
 **Production:** Cloudflare Pages, connected to this GitHub repository. Every push to `main` deploys, and every other branch gets its own preview at `<branch>.<project>.pages.dev`.
+
+```
+branch ──push──▶ Cloudflare builds ──▶ <branch>.<project>.pages.dev   (preview)
+   │
+   └──PR──▶ review, more pushes update the preview
+              │
+              └──merge into main ──▶ Cloudflare builds ──▶ <project>.pages.dev
+                                                          └─▶ www.jazzinthemountains.com
+                                                              (once the domain is connected)
+```
+
+- **Cloudflare reacts to pushes, not PRs.** Any push to any branch builds a preview. The PR is where GitHub shows it: a check with the preview link, or a red ✗ if the build failed.
+- **Merging into `main` updates the live site** within a minute or two.
+- **Pushing straight to `main` also deploys immediately.** Branch and PR is a convention for getting a preview first. GitHub's branch protection rules can enforce it if needed.
+
+Step-by-step instructions for editors are in [content/README.md](content/README.md#publishing-a-change).
 
 Cloudflare Pages build settings:
 
@@ -188,6 +208,9 @@ Old Weebly URLs are redirected in `public/_redirects`:
 
 #### small tasks
 
+
+
+
 - [x] increase size of Jazz in the Mountains logo on home page
 - [x] substitute the phrase "video submission" for "audition" or "video audition" throughout
 - [x] make links to external pages/documents open in new tabs
@@ -197,7 +220,17 @@ Old Weebly URLs are redirected in `public/_redirects`:
 - [x] change price order to display least to most
 - [x] replace "Adults 18 and over" with "21 and over"
 - [x] change description of 1BR suite
-
-
-
-
+- [x] replace "what we value" grid with new sugestions
+  - [x] move "what we value" grid from home page to faculty page
+  - [x] update blurb
+  - [x] update grid
+  - [x] add "who's it for"
+- [x] add FAQ page
+- [x] add "the experience" page
+- [x] remove scholarship reference from home page (i.e., from under "who it's for")
+- [x] remove sentence about partners costing extra from this page
+- [x] change "upload your video" link from "02 Record" step on apply page to a link that goes to video upload instructions. change corresponding text.
+- [x] move killington contact information off of "contact us" page and instead place it on FAQ page.
+- [x] remove scholarship and earn college credit from footers
+- [x] update fees to reflect change in studio room rate
+- [x] add Mailchimp "Join our mailing list" page, linked from the footer and Contact page

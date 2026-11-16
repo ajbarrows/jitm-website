@@ -10,8 +10,8 @@ labels:
 #   shared: price for EACH of two campers sharing the room
 rooms:
   - room: Studio with Murphy queen and kitchenette
-    single: 2995
-    shared: 2485
+    single: 3045
+    shared: 2510
   - room: 2 Queens
     single: 3095
     shared: 2535

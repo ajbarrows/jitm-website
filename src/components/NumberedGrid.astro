@@ -1,0 +1,21 @@
+---
+// A section heading over a numbered grid of short points (01, 02, …).
+// Used for "Why Jazz in the Mountains" on Home and "What we value" on Faculty.
+import SectionTitle from './SectionTitle.astro';
+import { getData, mdInline } from '../lib/content';
+
+interface Props {
+  grid: { label: string; title?: string; items: { title: string; text: string }[] };
+  warm?: boolean;
+}
+const { grid, warm = false } = Astro.props;
+const data = await getData();
+---
+<section class:list={['section', { 'section-warm': warm }]}>
+  <div class="container">
+    <SectionTitle label={grid.label} title={grid.title} />
+    <ol class="values">
+      {grid.items.map((v) => <li><h3>{v.title}</h3><p set:html={mdInline(v.text, data)} /></li>)}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Testimonial from '../components/Testimonial.astro';
+import { getData, getPage, getTestimonialByName, fill, md } from '../lib/content';
+
+const data = await getData();
+const { camp, links } = data;
+const { data: d } = await getPage('faq');
+
+// Look up quotes up front, so a misspelled name stops the build.
+const sections = await Promise.all(
+  (d.sections ?? []).map(async (s) => ({
+    ...s,
+    questions: await Promise.all(
+      s.questions.map(async (q) => ({ ...q, quote: q.testimonial ? await getTestimonialByName(q.testimonial) : undefined })),
+    ),
+  })),
+);
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)}>
+  <PageHeader eyebrow="Questions and answers" title={fill(d.title, data)} lede={d.intro && fill(d.intro, data)} image={d.banner} imageAlt={d.bannerAlt} />
+
+  {sections.map((s, i) => (
+    <section class:list={['section', { 'section-warm': i % 2 === 1 }]}>
+      <div class="container narrow">
+        <SectionTitle label={s.title} />
+        <div class="accordion faq">
+          {s.questions.map((q) => (
+            <details>
+              <summary>{q.q}</summary>
+              <div class="faq-answer">
+                <div class="prose" set:html={md(q.a, data)} />
+                {q.quote && <Testimonial t={q.quote} />}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="split-media" id="venue">
+    {d.venuePhoto && <Image src={d.venuePhoto} alt={d.venuePhotoAlt ?? ''} widths={[700, 1100, 1600]} sizes="(min-width: 900px) 50vw, 100vw" />}
+    <div class="split-media-body">
+      <SectionTitle label="Where camp is held" title={camp.venue} align="left" />
+      <p class="big-text">{camp.town}</p>
+      <div class="btn-row">
+        <a href={links.directions} class="btn btn-dark">Get directions</a>
+        <a href={links.venue} class="btn btn-outline">About the hotel</a>
+      </div>
+    </div>
+  </section>
+</Base>
