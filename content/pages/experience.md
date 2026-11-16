@@ -109,8 +109,6 @@ partners:
     - Golf
   closing: >-
     Then on Thursday night, they get a front-row seat for the performance.
-    Adding a partner costs ${{fees.partner.price}} for the week on top of the single-room
-    price.
 
 takeHome:
   title: What campers take home

@@ -204,7 +204,7 @@ const pages = defineCollection({
       })).optional(),
       // Faculty
       values: numberedGrid.optional(),
-      // Contact
+      // FAQ ("Where camp is held" photo)
       venuePhoto: image().optional(),
       venuePhotoAlt: z.string().optional(),
       // Scholarships

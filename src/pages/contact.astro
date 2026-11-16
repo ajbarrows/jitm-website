@@ -1,12 +1,11 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import { getData, getPage, fill, md, telHref } from '../lib/content';
 
 const data = await getData();
-const { camp, links } = data;
+const { camp } = data;
 const page = await getPage('contact');
 ---
 <Base title={fill(page.data.title, data)} description={fill(page.data.description, data)} cta={false}>
@@ -26,17 +25,6 @@ const page = await getPage('contact');
       <div>
         <SectionTitle label="Mail" level="h3" />
         <p class="big-text">{camp.organization.name}{camp.contact.mailingAddress.map((line) => <><br />{line}</>)}</p>
-      </div>
-    </div>
-  </section>
-  <section class="split-media">
-    {page.data.venuePhoto && <Image src={page.data.venuePhoto} alt={page.data.venuePhotoAlt ?? ''} widths={[700, 1100, 1600]} sizes="(min-width: 900px) 50vw, 100vw" />}
-    <div class="split-media-body">
-      <SectionTitle label="Where camp is held" title={camp.venue} align="left" />
-      <p class="big-text">{camp.town}</p>
-      <div class="btn-row">
-        <a href={links.directions} class="btn btn-dark">Get directions</a>
-        <a href={links.venue} class="btn btn-outline">About the hotel</a>
       </div>
     </div>
   </section>

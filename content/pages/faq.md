@@ -4,6 +4,9 @@ description: Answers to common questions about Jazz in the Mountains, an adult j
 banner: ../images/photos/dsc01712.jpg
 bannerAlt: Eight smiling campers hold up their instruments by a lake, with ski trails on the mountain behind them
 intro: Can't find what you're looking for? Email {{camp.contact.email}} and we'll get back to you.
+# Photo beside "Where camp is held" (venue, directions and hotel links) at the bottom of the page.
+venuePhoto: ../images/photos/dsc01683.jpg
+venuePhotoAlt: Campers on a garden path with the mountains of Killington behind them
 
 # Questions, grouped into sections. Answers are Markdown, and can use {{tokens}}
 # for dates and prices so they stay in step with content/data/.
