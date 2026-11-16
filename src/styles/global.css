@@ -520,3 +520,15 @@ audio { width: 100%; max-width: 480px; }
 .site-footer li + li { margin-top: 0.6rem; }
 .footer-legal { border-top: 1px solid var(--line-dark); margin-top: 4rem; padding-block: 1.75rem; font-size: 0.8rem; color: rgb(255 255 255 / 50%); }
 
+
+/* ---------- Mailing list page ---------- */
+
+.mailing-list-form { display: grid; gap: 1.25rem; grid-template-columns: repeat(2, 1fr); margin-top: 2.5rem; text-align: left; }
+@media (max-width: 520px) { .mailing-list-form { grid-template-columns: 1fr; } }
+.mailing-list-form .mailing-list-wide { grid-column: 1 / -1; }
+.mailing-list-form label span { display: block; margin-bottom: 0.45rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.mailing-list-form label em { font-style: normal; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.mailing-list-form input { width: 100%; padding: 0.85em 1em; border: 1px solid var(--line); border-radius: 2px; background: #fff; color: var(--text); font: inherit; }
+.mailing-list-form input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.mailing-list-form .btn { grid-column: 1 / -1; justify-self: center; margin-top: 0.75rem; cursor: pointer; }
+.mailing-list-note { margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }

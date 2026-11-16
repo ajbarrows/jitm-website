@@ -9,6 +9,11 @@ forms:
 # public/files/ and give its path starting with /files/. Leave "" to hide the links.
 atAGlance: /files/jitm-at-a-glance-2027.pdf
 
+# Mailchimp signup form in the footer. This is the form's `action` URL from
+# Mailchimp's embedded form code (it contains "/subscribe/post?u=...&id=...").
+# Leave "" to hide the form.
+mailingList: https://jazzinthemountains.us15.list-manage.com/subscribe/post?u=cdd9bd061236eb4279fec2fec&id=da04e0b727&f_id=00a3c2e1f0
+
 auditionMusic: https://drive.google.com/drive/folders/1o3nSfi2ygFr-C3Njyme4G71GJ9yr1GSM?usp=sharing
 donate: "" # TODO: Stripe link not yet created
 

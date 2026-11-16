@@ -1,0 +1,18 @@
+---
+// Mailchimp signup form, posting straight to Mailchimp: no script needed.
+// Mailchimp shows its own confirmation page in a new tab. Field names (EMAIL,
+// FNAME, LNAME, MMERGE8) must match the audience's fields in Mailchimp.
+interface Props { action: string }
+const { action } = Astro.props;
+const params = new URL(action).searchParams;
+// Mailchimp's spam trap: bots fill in this hidden field, people don't.
+const honeypot = `b_${params.get('u')}_${params.get('id')}`;
+---
+<form action={action} method="post" target="_blank" class="mailing-list-form">
+  <label><span>First name</span><input type="text" name="FNAME" autocomplete="given-name" required /></label>
+  <label><span>Last name</span><input type="text" name="LNAME" autocomplete="family-name" required /></label>
+  <label class="mailing-list-wide"><span>Email</span><input type="email" name="EMAIL" autocomplete="email" required /></label>
+  <label class="mailing-list-wide"><span>Instrument <em>(optional)</em></span><input type="text" name="MMERGE8" /></label>
+  <div class="visually-hidden" aria-hidden="true"><input type="text" name={honeypot} tabindex="-1" value="" /></div>
+  <button type="submit" class="btn btn-large">Subscribe</button>
+</form>

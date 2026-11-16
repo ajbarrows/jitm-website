@@ -60,7 +60,7 @@ scripts/            Deployment helpers
 
 All editable content lives in `content/`, and `content/README.md` explains how to change it and publish a change. For now, the site owner edits those files directly and pushes to GitHub, which rebuilds the site.
 
-- **Data** lives once in `content/data/`: `camp.yaml` (dates, venue, contact, eligibility), `deadlines.yaml`, `fees.yaml`, `links.yaml` (forms, audition music, donation, video, social), `faculty.yaml`, `college-credit.yaml` and `testimonials.yaml`. Pages read from these, so nothing is typed twice.
+- **Data** lives once in `content/data/`: `camp.yaml` (dates, venue, contact, eligibility), `deadlines.yaml`, `fees.yaml`, `links.yaml` (forms, mailing list, audition music, donation, video, social), `faculty.yaml`, `college-credit.yaml` and `testimonials.yaml`. Pages read from these, so nothing is typed twice.
 - **Page wording** lives in `content/pages/` as Markdown, which can pull in data with `{{tokens}}`.
 - **Empty links** (such as the Stripe link before it exists) are hidden automatically, with a "coming soon" note where it matters.
 - Run `npm run check` after editing to catch schema errors.
@@ -85,10 +85,11 @@ All editable content lives in `content/`, and `content/README.md` explains how t
 - Map: a "Get directions" button that opens Google Maps
 - Accordions: native `<details>` elements
 - Mobile navigation: wraps under the logo; no menu script
+- Mailchimp signup: a plain form that posts to Mailchimp, without Mailchimp's script or stylesheet. Mailchimp shows its own confirmation page in a new tab
 
 ## Site map
 
-Navigation has no dropdowns: **Experience · Faculty · FAQ · Contact · Apply** (Apply is a button). Scholarships is linked from the Apply page (under the fees) and the FAQ. Earn College Credit is linked from the Apply page (under "Who can apply") and the FAQ.
+Navigation has no dropdowns: **Experience · Faculty · FAQ · Contact · Apply** (Apply is a button). Join Our Mailing List is linked from the footer and the Contact page. Scholarships is linked from the Apply page (under the fees) and the FAQ. Earn College Credit is linked from the Apply page (under "Who can apply") and the FAQ.
 
 | Page | Source | Sections |
 |---|---|---|
@@ -98,12 +99,13 @@ Navigation has no dropdowns: **Experience · Faculty · FAQ · Contact · Apply*
 | **Faculty** `/faculty/` | `content/pages/faculty.md`, `content/data/faculty.yaml` | Grid of horizontal headshots (initials shown until a photo is added), each linking to a detail page |
 | **Faculty detail** `/faculty/<id>/` | `content/data/faculty.yaml` | Photo, role, instrument, bio, audio tracks, links |
 | **Scholarships** `/scholarships/` | `content/pages/scholarships.md` | Mission text; scholarship application; donate to the fund through Stripe |
-| **Contact** `/contact/` | `content/pages/contact.md` | Email, phone and mail cards. **No contact form** |
+| **Contact** `/contact/` | `content/pages/contact.md` | Email, phone and mail cards; a band linking to the mailing list. **No contact form** |
 | **Earn College Credit** `/earn-college-credit/` | `content/pages/earn-college-credit.md` | Jazz Immersion info and registration links |
 | **FAQ** `/faq/` | `content/pages/faq.md` | Questions grouped into sections, as accordions; an answer can show a camper quote from `testimonials.yaml`; "Where camp is held" venue photo with directions and hotel buttons (`#venue`) |
+| **Mailing list** `/mailing-list/` | `content/pages/mailing-list.md` | Intro; Mailchimp signup form (first and last name, email, optional instrument), posting to `mailingList` in `links.yaml` |
 | **404** | `src/pages/404.astro` | "Wrong note" page with links home and to Apply |
 
-**Footer (shared):** camp dates and venue, Apply Now, Support Our Mission (once the Stripe link exists), contact info, page links (not Scholarships or Earn College Credit), YouTube, Facebook, the Killington Resort link, and a Google review link once the Business Profile exists.
+**Footer (shared):** camp dates and venue, Apply Now, Support Our Mission (once the Stripe link exists), contact info, page links (not Scholarships or Earn College Credit), Join our mailing list, YouTube, Facebook, the Killington Resort link, and a Google review link once the Business Profile exists.
 
 ## Design
 
@@ -230,3 +232,5 @@ Old Weebly URLs are redirected in `public/_redirects`:
 - [x] change "upload your video" link from "02 Record" step on apply page to a link that goes to video upload instructions. change corresponding text.
 - [x] move killington contact information off of "contact us" page and instead place it on FAQ page.
 - [x] remove scholarship and earn college credit from footers
+- [x] update fees to reflect change in studio room rate
+- [x] add Mailchimp "Join our mailing list" page, linked from the footer and Contact page

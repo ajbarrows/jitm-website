@@ -87,6 +87,7 @@ const links = defineCollection({
   schema: z.object({
     forms: z.object({ application: optionalUrl, videoUpload: optionalUrl, scholarship: optionalUrl }),
     atAGlance: optionalPublicFile,
+    mailingList: optionalUrl, // Mailchimp form action URL, used on /mailing-list/
     auditionMusic: optionalUrl,
     donate: optionalUrl,
     featureVideo: z.string(),

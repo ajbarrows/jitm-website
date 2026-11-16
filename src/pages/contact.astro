@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionTitle from '../components/SectionTitle.astro';
+import { url } from '../lib/url';
 import { getData, getPage, fill, md, telHref } from '../lib/content';
 
 const data = await getData();
@@ -25,6 +26,15 @@ const page = await getPage('contact');
       <div>
         <SectionTitle label="Mail" level="h3" />
         <p class="big-text">{camp.organization.name}{camp.contact.mailingAddress.map((line) => <><br />{line}</>)}</p>
+      </div>
+    </div>
+  </section>
+  <section class="section section-warm">
+    <div class="container narrow center">
+      <SectionTitle label="Mailing list" title="Hear from us" />
+      <p class="statement">Get camp news and dates in your inbox, including when applications open.</p>
+      <div class="btn-row center">
+        <a href={url('/mailing-list/')} class="btn btn-dark">Join our mailing list</a>
       </div>
     </div>
   </section>

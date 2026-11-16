@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import MailingListForm from '../components/MailingListForm.astro';
+import { getData, getPage, fill, md, isSet } from '../lib/content';
+
+const data = await getData();
+const { camp, links } = data;
+const page = await getPage('mailing-list');
+const d = page.data;
+---
+<Base title={fill(d.title, data)} description={fill(d.description, data)}>
+  <PageHeader eyebrow="Mailing list" title={fill(d.title, data)} lede={d.intro && fill(d.intro, data)} image={d.banner} imageAlt={d.bannerAlt} />
+  <section class="section">
+    <div class="container narrow center">
+      <SectionTitle label="Stay in the loop" />
+      <div class="prose prose-large" set:html={md(page.body, data)} />
+      {isSet(links.mailingList)
+        ? <>
+            <MailingListForm action={links.mailingList!} />
+            <p class="mailing-list-note">After you subscribe, Mailchimp will open a confirmation page in a new tab.</p>
+          </>
+        : <p class="muted">Signup will be available here soon. Until then, email <a href={`mailto:${camp.contact.email}`}>{camp.contact.email}</a> to be added.</p>}
+    </div>
+  </section>
+</Base>
